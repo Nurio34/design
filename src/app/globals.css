@@ -1,5 +1,11 @@
 @import "tailwindcss";
+@plugin "daisyui";
 
+@layer utilities {
+  .grid-center-cell {
+    @apply col-start-2 col-end-3 row-start-2 row-end-3;
+  }
+}
 :root {
   --background: #ffffff;
   --foreground: #171717;
