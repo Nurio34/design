@@ -1,4 +1,6 @@
+import ProviderComponent from "./Provider";
+
 function CssPage() {
-  return <main>CssPage</main>;
+  return <ProviderComponent />;
 }
 export default CssPage;

@@ -1,41 +1,32 @@
-"use client";
-
 import Link from "next/link";
-
-const links = [
-  {
-    name: "CSS",
-    href: "/css",
-  },
-  {
-    name: "SVG",
-    href: "/svg",
-  },
-  {
-    name: "Canvas",
-    href: "/canvas",
-  },
-  {
-    name: "GSAP",
-    href: "/gsap",
-  },
-  {
-    name: "Three.js",
-    href: "/three-js",
-  },
-];
+import { links } from "./_links";
+import { useAppDispatch } from "@/store/hooks";
+import { closeNavMenu } from "@/store/slices/modal";
+import MenuButton from "./_components/MenuButton";
 
 function Client() {
+  const dispatch = useAppDispatch();
+
+  const collapseNav = () => dispatch(closeNavMenu());
+
   return (
     <header
-      className="border-b border-base-content/20 py-2 px-4
+      className="min-h-[49px] border-b border-base-content/20 py-2 px-4
         col-start-1 col-end-3 row-start-1 row-end-2
+        hidden md:grid grid-cols-[auto_1fr_auto]
       "
     >
-      <ul className="flex justify-center items-center gap-x-16">
+      <MenuButton />
+      <ul
+        className={`col-start-2 col-end-3
+        flex justify-center items-center gap-x-16
+      `}
+      >
         {links.map((link) => (
           <li key={link.name}>
-            <Link href={link.href}>{link.name}</Link>
+            <Link href={link.href} onClick={collapseNav}>
+              {link.name}
+            </Link>
           </li>
         ))}
       </ul>

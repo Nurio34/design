@@ -1,12 +1,6 @@
-import LeftSection from "./LeftSection";
-import RightSection from "./RightSection";
+import ScrollAnimation from "./ScrollAnimation";
 
-function ScrollAnimation() {
-  return (
-    <main className="flex">
-      <LeftSection />
-      <RightSection />
-    </main>
-  );
+function ScrollAnimationPage() {
+  return <ScrollAnimation />;
 }
-export default ScrollAnimation;
+export default ScrollAnimationPage;

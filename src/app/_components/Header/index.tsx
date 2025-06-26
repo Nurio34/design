@@ -1,6 +1,6 @@
-import Client from "./Client";
+import ProviderComponent from "./Provider";
 
 function Header() {
-  return <Client />;
+  return <ProviderComponent />;
 }
 export default Header;

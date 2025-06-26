@@ -1,3 +1,4 @@
+"use client";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { canvas, css, gsap, NavItemType, svg, threejs } from "../_projects";

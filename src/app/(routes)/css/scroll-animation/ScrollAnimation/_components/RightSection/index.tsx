@@ -3,13 +3,13 @@ import Card from "./Card";
 
 function RightSection() {
   return (
-    <section className="basis-1/2 relative">
-      <ul>
+    <div className="basis-1/2 relative">
+      <ul className="isolate">
         {cards.map((card, index) => (
           <Card key={index} index={index} card={card} />
         ))}
       </ul>
-    </section>
+    </div>
   );
 }
 export default RightSection;
