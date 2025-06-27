@@ -9,33 +9,7 @@ import {
   useEffect,
   useState,
 } from "react";
-
-interface Moves {
-  stand: {
-    row: number;
-    frames: number;
-  };
-  move: {
-    row: number;
-    frames: number;
-  };
-  die: {
-    row: number;
-    frames: number;
-  };
-  attack: {
-    row: number;
-    frames: number;
-  };
-  defance: {
-    row: number;
-    frames: number;
-  };
-  walk: {
-    row: number;
-    frames: number;
-  };
-}
+import { Moves, moves } from "./_moves";
 
 interface ImageState {
   isLoading: boolean;
@@ -63,37 +37,12 @@ export const CharacterAnimationProvider = ({
     src: undefined,
     width: undefined,
     height: undefined,
-    moves: {
-      stand: {
-        row: 0,
-        frames: 5,
-      },
-      move: {
-        row: 1,
-        frames: 2,
-      },
-      die: {
-        row: 2,
-        frames: 5,
-      },
-      attack: {
-        row: 3,
-        frames: 7,
-      },
-      defance: {
-        row: 4,
-        frames: 3,
-      },
-      walk: {
-        row: 5,
-        frames: 11,
-      },
-    },
+    moves,
   });
 
   useEffect(() => {
     const image = new Image();
-    image.src = "/character-vector.webp";
+    image.src = "/character-vector2.webp";
     image.onload = () => {
       const src = image.src;
       const width = image.naturalWidth / 12;
