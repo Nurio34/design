@@ -1,152 +1,202 @@
 import { useEffect, useRef, useState } from "react";
 import { useCharacterAnimationContext } from "./Context";
 import "./_css/index.css";
+import { AnimationState } from "./_moves";
 
-type CurrentAction = "Stand" | "Step" | "Die" | "Attack" | "Defence" | "Walk";
+type CurrentAction = "stand" | "step" | "die" | "attack" | "defence" | "walk";
 
 function Client() {
   const { imageState } = useCharacterAnimationContext();
-  const { isLoading, image, src, width, height } = imageState;
+  const { isLoading, image, src, width, height, moves } = imageState;
   const isLoaded = !isLoading && image && src && width && height;
 
-  const ImageContainerRef = useRef<HTMLDivElement | null>(null);
-  const [currentAction, setCurrentAction] = useState<CurrentAction>("Stand");
+  const [animationState, setAnimationState] = useState({} as AnimationState);
+  const { row, frames, timeParameter } = animationState;
+  const [currentAction, setCurrentAction] = useState<CurrentAction>("stand");
+  console.log({ currentAction });
+
   const timeout = useRef<NodeJS.Timeout>(null);
-  const [walkState, setWalkState] = useState({
+  const [walkingState, setWalkingState] = useState({
     right: false,
     left: false,
+    x: 0,
   });
-  const { right, left } = walkState;
-  const [x, setX] = useState(0);
+  const interval = useRef<NodeJS.Timeout>(null);
+  const ImageContainerRef = useRef<HTMLDivElement | null>(null);
+  const [characterPosition, setCharacterPosition] = useState<{
+    bottom: number | undefined;
+  }>({ bottom: undefined });
 
   useEffect(() => {
-    const imageContainer = ImageContainerRef.current;
-
-    if (!imageContainer) return;
-
-    imageContainer.classList.add(currentAction);
-
-    switch (currentAction) {
-      case "Stand":
-        imageContainer.classList.add("Stand");
-
-      case "Step":
-        timeout.current = setTimeout(() => {
-          imageContainer.classList.remove(currentAction);
-          imageContainer.classList.add("Stand");
-        }, 400);
-        break;
-
-      case "Attack":
-        timeout.current = setTimeout(() => {
-          imageContainer.classList.remove(currentAction);
-          imageContainer.classList.add("Stand");
-        }, 1000);
-        break;
-
-      default:
-        break;
-    }
-
-    return () => {
-      if (timeout.current) clearTimeout(timeout.current);
-    };
-  }, [isLoaded, currentAction]);
+    const { stand } = moves;
+    setAnimationState(stand);
+  }, [moves]);
 
   useEffect(() => {
-    const imageContainer = ImageContainerRef.current;
-
     const handleKeydown = (e: KeyboardEvent) => {
-      if (!imageContainer) return;
-
       const key = e.code;
+      const { step, attack, defence, walk } = moves;
+      switch (key) {
+        case "KeyE":
+          setCurrentAction("step");
+          setAnimationState(step);
+          break;
+        case "KeyF":
+          setCurrentAction("attack");
+          setAnimationState(attack);
+          break;
+        case "KeyR":
+          setCurrentAction("defence");
+          setAnimationState(defence);
+          break;
+        case "KeyD":
+          setCurrentAction("walk");
+          setAnimationState(walk);
+          setWalkingState((prev) => ({ ...prev, right: true }));
+          break;
+        case "KeyA":
+          setCurrentAction("walk");
+          setAnimationState(walk);
+          setWalkingState((prev) => ({ ...prev, left: true }));
+          break;
 
-      if (key === "KeyE") {
-        imageContainer.classList.remove(currentAction);
-        setCurrentAction("Step");
-      } else if (key === "KeyD") {
-        imageContainer.classList.remove(currentAction);
-        setCurrentAction("Walk");
-        setWalkState((prev) => ({ ...prev, right: true }));
-      } else if (key === "KeyA") {
-        imageContainer.classList.remove(currentAction);
-        setCurrentAction("Walk");
-        setWalkState((prev) => ({ ...prev, left: true }));
-      } else if (key === "KeyF") {
-        imageContainer.classList.remove(currentAction);
-        setCurrentAction("Attack");
+        default:
+          break;
       }
     };
 
     window.addEventListener("keydown", handleKeydown);
 
-    const handleKeyUp = (e: KeyboardEvent) => {
-      if (!imageContainer) return;
+    const handleKeyup = (e: KeyboardEvent) => {
+      if (timeout.current) clearInterval(timeout.current);
       const key = e.code;
+      const { stand, step, attack, defence } = moves;
 
-      if (key === "KeyD") {
-        setWalkState((prev) => ({ ...prev, right: false }));
-      } else if (key === "KeyA") {
-        setWalkState((prev) => ({ ...prev, left: false }));
+      switch (key) {
+        case "KeyE":
+          timeout.current = setTimeout(() => {
+            setCurrentAction("stand");
+            setAnimationState(stand);
+          }, step.frames * step.timeParameter * 1000);
+          break;
+
+        case "KeyF":
+          timeout.current = setTimeout(() => {
+            setCurrentAction("stand");
+            setAnimationState(stand);
+          }, attack.frames * attack.timeParameter * 1000);
+          break;
+
+        case "KeyR":
+          timeout.current = setTimeout(() => {
+            setCurrentAction("stand");
+            setAnimationState(stand);
+          }, defence.frames * defence.timeParameter * 1000);
+          break;
+        case "KeyD":
+          setCurrentAction("stand");
+          setAnimationState(stand);
+          setWalkingState((prev) => ({ ...prev, right: false }));
+
+          break;
+        case "KeyA":
+          setCurrentAction("stand");
+          setAnimationState(stand);
+          setWalkingState((prev) => ({ ...prev, left: false }));
+
+          break;
+
+        default:
+          break;
       }
     };
 
-    window.addEventListener("keyup", handleKeyUp);
+    window.addEventListener("keyup", handleKeyup);
 
     return () => {
       window.removeEventListener("keydown", handleKeydown);
-      window.removeEventListener("keyup", handleKeyUp);
+      window.removeEventListener("keyup", handleKeyup);
+      if (timeout.current) clearTimeout(timeout.current);
     };
-  }, [isLoaded]);
+  }, [moves]);
 
   useEffect(() => {
-    const imageContainer = ImageContainerRef.current;
-    if (!imageContainer) return;
+    if (!isLoaded) return;
 
-    const isWalkingEnded = Object.values(walkState).every((state) => !state);
-    if (isWalkingEnded) {
-      imageContainer.classList.remove(currentAction);
-      setCurrentAction("Stand");
+    const { right, left } = walkingState;
+
+    if (right) {
+      if (interval.current) clearInterval(interval.current);
+
+      interval.current = setInterval(() => {
+        setWalkingState((prev) => {
+          if (prev.x >= innerWidth - width * 2) return prev;
+          return { ...prev, x: prev.x + 1 };
+        });
+      }, 1000 / 60);
     }
-  }, [walkState]);
+    if (left) {
+      if (interval.current) clearInterval(interval.current);
+
+      interval.current = setInterval(() => {
+        setWalkingState((prev) => {
+          if (prev.x <= width) return prev;
+          return { ...prev, x: prev.x - 1 };
+        });
+      }, 1000 / 60);
+    }
+
+    return () => {
+      if (interval.current) clearInterval(interval.current);
+    };
+  }, [walkingState, isLoaded, width]);
 
   useEffect(() => {
-    if (!width) return;
+    if (!isLoaded) return;
 
-    const animate = () => {
-      if (right) {
-        if (x >= innerWidth - width) return;
-        setX((prev) => prev + 2);
-      } else {
-        if (x === 0) return;
-        setX((prev) => prev - 2);
-      }
-    };
+    const character = ImageContainerRef.current;
+    if (!character) return;
 
-    animate();
-  }, [right, width]);
+    const bottom = character.getBoundingClientRect().top + height / 2 - 5;
+    setCharacterPosition((prev) => ({ ...prev, bottom }));
+  }, [isLoaded, height]);
 
   if (!isLoaded) return <div>Loading</div>;
 
   return (
-    <section className="h-full relative">
+    <section className="h-full relative overflow-hidden">
       <div
         ref={ImageContainerRef}
-        className="absolute top-1/2 CurrentAction_ImageContainer transition-all"
+        className="absolute top-1/2 CurrentAction_ImageContainer"
         style={
           {
             width,
             height,
             // width: "100vw",
             // height: "100vh",
-            "--src": `url(${src})`,
-            "--x": width,
-            "--y": height,
-            transform: `rotateY(${left ? 180 : 0}deg)`,
-            left: x,
+            "--src": `url('${src}')`,
+            "--step": frames,
+            "--y": row,
+            "--w": width,
+            "--h": height,
+            "--time": timeParameter * frames,
+            left: walkingState.x,
+            transform: `rotateY(${walkingState.left ? 180 : 0}deg)`,
           } as React.CSSProperties
         }
       />
+      {characterPosition.bottom && (
+        <div
+          className="absolute h-[350px] w-full"
+          style={{
+            top: characterPosition.bottom,
+            backgroundImage: "url('/css/character-animation/ground.webp')",
+            backgroundRepeat: "repeat-x",
+            backgroundSize: "auto 100%",
+            backgroundPositionX: walkingState.x * -1,
+          }}
+        />
+      )}
     </section>
   );
 }

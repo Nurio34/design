@@ -1,77 +1,16 @@
 .CurrentAction_ImageContainer {
   background-image: var(--src);
+  box-shadow: inset -5px 5px 5px 5px white;
   background-repeat: no-repeat;
-  background-position: 0 0;
+  background-position-x: 0;
+  background-position-y: calc(
+    -1px * (var(--h) * var(--y) - calc(3 * var(--y)))
+  );
+  animation: moves calc(1s * (var(--time))) steps(var(--step)) infinite;
 }
 
-.CurrentAction_ImageContainer.Stand {
-  animation: Stand 1.5s steps(1) infinite;
-}
-.CurrentAction_ImageContainer.Step {
-  animation: Step 0.4s steps(1);
-}
-.CurrentAction_ImageContainer.Walk {
-  animation: Walk 1s steps(12) infinite;
-}
-.CurrentAction_ImageContainer.Attack {
-  animation: Attack 0.5s steps(8) infinite alternate;
-}
-
-@keyframes Stand {
-  0% {
-    background-position: 0 0;
-  }
-  10%,
-  90% {
-    background-position: calc(1 * var(--x) * -1px) 0;
-  }
-  20%,
-  80% {
-    background-position: calc(2 * var(--x) * -1px) 0;
-  }
-  30%,
-  70% {
-    background-position: calc(3 * var(--x) * -1px) 0;
-  }
-  40%,
-  60% {
-    background-position: calc(4 * var(--x) * -1px) 0;
-  }
-  50% {
-    background-position: calc(5 * var(--x) * -1px) 0;
-  }
-}
-
-@keyframes Step {
-  0%,
-  100% {
-    background-position: calc(0 * var(--x) * -1px) calc(1 * var(--y) * -1px);
-  }
-  25%,
-  75% {
-    background-position: calc(1 * var(--x) * -1px) calc(1 * var(--y) * -1px);
-  }
-  50% {
-    background-position: calc(2 * var(--x) * -1px) calc(1 * var(--y) * -1px);
-  }
-}
-
-@keyframes Walk {
-  from {
-    background-position: 0 calc(calc(-5 * var(--y) * 1px) + 14px);
-  }
+@keyframes moves {
   to {
-    background-position: calc(-12 * var(--x) * 1px)
-      calc(calc(-5 * var(--y) * 1px) + 14px);
-  }
-}
-
-@keyframes Attack {
-  from {
-    background-position: 0 calc(calc(-3 * var(--y) * 1px));
-  }
-  to {
-    background-position: calc(-8 * var(--x) * 1px)
-      calc(calc(-3 * var(--y) * 1px));
+    background-position-x: calc(-1px * var(--w) * var(--step));
   }
 }

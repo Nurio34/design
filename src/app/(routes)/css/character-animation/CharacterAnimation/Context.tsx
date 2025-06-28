@@ -42,7 +42,7 @@ export const CharacterAnimationProvider = ({
 
   useEffect(() => {
     const image = new Image();
-    image.src = "/character-vector2.webp";
+    image.src = "/css/character-animation/character-vector2.webp";
     image.onload = () => {
       const src = image.src;
       const width = image.naturalWidth / 12;

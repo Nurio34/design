@@ -1,53 +1,47 @@
+export interface AnimationState {
+  row: number;
+  frames: number;
+  timeParameter: number;
+}
+
 export interface Moves {
-  stand: {
-    row: number;
-    frames: number;
-  };
-  step: {
-    row: number;
-    frames: number;
-  };
-  die: {
-    row: number;
-    frames: number;
-  };
-  attack: {
-    row: number;
-    frames: number;
-  };
-  defence: {
-    row: number;
-    frames: number;
-  };
-  walk: {
-    row: number;
-    frames: number;
-  };
+  stand: AnimationState;
+  step: AnimationState;
+  die: AnimationState;
+  attack: AnimationState;
+  defence: AnimationState;
+  walk: AnimationState;
 }
 
 export const moves: Moves = {
   stand: {
     row: 0,
-    frames: 5,
+    frames: 6,
+    timeParameter: 0.2,
   },
   step: {
     row: 1,
-    frames: 2,
+    frames: 3,
+    timeParameter: 0.1,
   },
   die: {
     row: 2,
-    frames: 5,
+    frames: 6,
+    timeParameter: 0.2,
   },
   attack: {
     row: 3,
-    frames: 7,
+    frames: 8,
+    timeParameter: 0.075,
   },
   defence: {
     row: 4,
-    frames: 3,
+    frames: 4,
+    timeParameter: 0.2,
   },
   walk: {
     row: 5,
-    frames: 11,
+    frames: 12,
+    timeParameter: 0.1,
   },
 };
