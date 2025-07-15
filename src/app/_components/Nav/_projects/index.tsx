@@ -13,8 +13,8 @@ export const css = [
     href: "/character-animation",
   },
   {
-    name: "CSS Project 3",
-    href: "/css-project-3",
+    name: "Scroll Animation-2",
+    href: "/scroll-animation-2",
   },
   {
     name: "CSS Project 4",
