@@ -1,6 +1,0 @@
-.SomeStyle {
-  background: url(/mountain.jpg), url(/mask/2.webp);
-  /* background-size: cover; */
-  background-position: center center;
-  background-blend-mode: screen;
-}

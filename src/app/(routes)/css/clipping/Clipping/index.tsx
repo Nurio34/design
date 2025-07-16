@@ -3,11 +3,11 @@ import { store } from "@/store";
 import { Provider } from "react-redux";
 import Client from "./Client";
 
-function ScrollAnimation() {
+function Clipping() {
   return (
     <Provider store={store}>
       <Client />
     </Provider>
   );
 }
-export default ScrollAnimation;
+export default Clipping;
