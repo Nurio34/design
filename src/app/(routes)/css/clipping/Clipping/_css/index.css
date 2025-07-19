@@ -23,3 +23,57 @@
     "M 10,40 L 70,40 L 80,30 L 80,10 L 90,0 L 140,0 L 150,10 L 150,120 L 140,130 L 10,130 L 0,120 L 0,50 L 10,40 Z"
   );
 }
+.Clipping .AnimatedClip_Container {
+  border-top-left-radius: 50% 25%;
+  border-bottom-right-radius: 100% 25%;
+  border-top-right-radius: 20% 40%;
+  border-bottom-left-radius: 25% 10%;
+  overflow: hidden;
+}
+.Clipping .AnimatedClip {
+  background-image: url("/girl.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  clip-path: circle(25% at 25% 25%);
+  animation: AnimatedClip_move 8s linear infinite;
+}
+@keyframes AnimatedClip_move {
+  10% {
+    clip-path: circle(25% at 75% 75%);
+  }
+  20% {
+    clip-path: circle(25% at 50% 25%);
+  }
+  30% {
+    clip-path: circle(25% at 25% 75%);
+  }
+  40% {
+    clip-path: circle(25% at 50% 50%);
+  }
+  100% {
+    clip-path: circle(100% at 50% 50%);
+  }
+}
+.Clipping .ClippedShape {
+  background-image: url("/girl.jpg"), linear-gradient(45deg, red, yellow);
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: screen;
+  clip-path: polygon(0% 50%, 100% 0%, 100% 50%, 0% 100%);
+}
+.Clipping .Tooltip {
+  /* w : 112,
+  h : 63 */
+  clip-path: path(
+    "M 0,12 L 44,12 L 56,0 L 68,12 L 112,12 L 112,63 L 0,63 L 0,12"
+  );
+}
+.Clipping .InvertedBorder {
+  background: url("/girl.jpg");
+  background-size: cover;
+  background-position: center;
+  clip-path: path(
+    "M 0,125 A 25,25 0,0,1 25,100 L 175,100 A 25,25 0,0,0 200,75 L 200,25 A 25,25 0,0,1  225,0 L 875,0 A 25,25 0,0,1  900,25 L 900,475 A 25,25 0,0,1  875,500 L 725,500 A 25,25 0,0,0  700,525 L 700,575 A 25,25 0,0,1 675,600 L 25,600 A 25,25 0,0,1  0, 575  "
+  );
+}
