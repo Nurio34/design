@@ -17,8 +17,8 @@ export const css = [
     href: "/clipping",
   },
   {
-    name: "CSS Project 4",
-    href: "/css-project-4",
+    name: "Columns & Rows",
+    href: "/columns-n-rows",
   },
   {
     name: "CSS Project 5",

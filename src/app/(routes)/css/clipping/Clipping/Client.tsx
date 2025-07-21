@@ -1,5 +1,7 @@
+import AnimatedBorder from "./_components/AnimatedBorder";
 import AnimatedClip from "./_components/AnimatedClip";
 import DotButton from "./_components/Buttons/DotButton";
+import Liquid from "./_components/Buttons/Liquid";
 import NextButton from "./_components/Buttons/NextButton";
 import Slant from "./_components/Buttons/Slant";
 import Sunrise from "./_components/Buttons/Sunrise";
@@ -27,13 +29,14 @@ function Client() {
       <AnimatedClip />
       <ClippedShape />
       <InvertedBorder />
-      <div className="my-[10vh] flex justify-center items-center gap-x-[1vw]">
+      <div className="my-10 flex justify-center items-center gap-x-[1vw]">
         <NextButton />
         <DotButton />
         <Sunrise />
         <Slant />
-        <button className="Clipping_Button">Liquid</button>
+        <Liquid />
       </div>
+      <AnimatedBorder />
     </section>
   );
 }

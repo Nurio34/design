@@ -1,11 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface ModalState {
   navMenu: boolean;
+  maxColumnHeight: number;
 }
 
 const initialState: ModalState = {
   navMenu: false,
+  maxColumnHeight: 0,
 };
 
 export const modalSlice = createSlice({
@@ -18,11 +20,15 @@ export const modalSlice = createSlice({
     closeNavMenu: (state) => {
       state.navMenu = false;
     },
+    setMaxColumnHeight: (state, action: PayloadAction<number>) => {
+      state.maxColumnHeight = action.payload;
+    },
 
     reset: () => initialState,
   },
 });
 
-export const { openNavMenu, closeNavMenu, reset } = modalSlice.actions;
+export const { openNavMenu, closeNavMenu, setMaxColumnHeight, reset } =
+  modalSlice.actions;
 
 export default modalSlice.reducer;

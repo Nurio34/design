@@ -1,0 +1,18 @@
+.Column_Slide {
+  animation: ColumnsNRows_Column_Slide_slide 32s linear infinite;
+}
+
+@keyframes ColumnsNRows_Column_Slide_slide {
+  to {
+    transform: translateY(calc(1px * var(--h) * -1 - calc(var(--rg))));
+  }
+}
+
+.Column_Reverse_Slide {
+  animation: ColumnsNRows_Column_Reverse_Slide_slide 32s linear infinite;
+}
+@keyframes ColumnsNRows_Column_Reverse_Slide_slide {
+  from {
+    transform: translateY(calc(1px * var(--h) * -1 - calc(var(--rg))));
+  }
+}

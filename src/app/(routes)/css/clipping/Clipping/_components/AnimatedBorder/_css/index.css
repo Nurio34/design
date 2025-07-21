@@ -1,0 +1,31 @@
+.Clipping_AnimatedBorder {
+  background-color: orange;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    background-color: black;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+    margin: -8px;
+    clip-path: inset(196px 0px 0px 0px);
+
+    animation: Clipping_AnimatedBorder_rotate 4s linear infinite;
+  }
+}
+
+@keyframes Clipping_AnimatedBorder_rotate {
+  25% {
+    clip-path: inset(0px 196px 0px 0px);
+  }
+  50% {
+    clip-path: inset(0px 0px 196px 0px);
+  }
+  75% {
+    clip-path: inset(0px 0px 0px 196px);
+  }
+}
