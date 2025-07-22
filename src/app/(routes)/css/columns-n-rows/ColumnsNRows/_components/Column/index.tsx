@@ -30,7 +30,7 @@ function Column({ column, index }: { column: ImageType[]; index: number }) {
     if (!containerHeight) return;
     dispatch(setMaxColumnHeight(containerHeight));
     setColumnState(column);
-  }, [containerHeight]);
+  }, [containerHeight, dispatch, column]);
 
   useEffect(() => {
     if (!ColumnRef.current) return;
@@ -65,7 +65,7 @@ function Column({ column, index }: { column: ImageType[]; index: number }) {
         {columnState.map((image, ind) => (
           <figure
             key={ind}
-            className="relative w-full bg-primary"
+            className="relative w-full"
             style={{
               aspectRatio: image.ratio,
               marginBlock: rowGap,

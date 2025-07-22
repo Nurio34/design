@@ -15,6 +15,7 @@ function Client() {
   return (
     path && (
       <nav
+        id="NavMenu"
         className={`border-r border-base-content/20 space-y-2 list-none
           col-start-1 col-end-2 row-start-2 row-end-3 transition-all
           hidden md:block

@@ -1,0 +1,19 @@
+.Row_Slide {
+  animation: Row_Slide-slide 32s linear infinite;
+}
+
+@keyframes Row_Slide-slide {
+  to {
+    transform: translateX(calc(1px * var(--w) * -1));
+  }
+}
+
+.Row_Slide_Reverse {
+  animation: Row_Slide_Reverse-slide 32s linear infinite;
+}
+
+@keyframes Row_Slide_Reverse-slide {
+  from {
+    transform: translateX(calc(1px * var(--w) * -1));
+  }
+}
