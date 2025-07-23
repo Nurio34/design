@@ -21,8 +21,8 @@ export const css = [
     href: "/columns-n-rows",
   },
   {
-    name: "CSS Project 5",
-    href: "/css-project-5",
+    name: "Mask",
+    href: "/mask",
   },
 ];
 
