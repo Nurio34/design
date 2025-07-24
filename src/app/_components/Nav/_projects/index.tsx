@@ -24,6 +24,10 @@ export const css = [
     name: "Mask",
     href: "/mask",
   },
+  {
+    name: "Cube",
+    href: "/cube",
+  },
 ];
 
 export const svg = [

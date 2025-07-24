@@ -1,0 +1,183 @@
+.Box_Skeleton {
+  transform-style: preserve-3d;
+  animation: skeleton 2.4s linear forwards;
+}
+@keyframes skeleton {
+  /* */
+  16.6% {
+    transform: rotateX(-10deg) rotateY(20deg) rotateZ(-10deg);
+  }
+  16.7% {
+    transform: rotateX(-10deg) rotateY(20deg) rotateZ(20deg);
+  }
+  25.1% {
+    transform: rotateX(-10deg) rotateY(20deg) rotateZ(-10deg);
+  }
+  /* */
+
+  /* */
+  33.3% {
+    transform: rotateX(-10deg) rotateY(20deg) rotateZ(-10deg);
+  }
+  33.4% {
+    transform: rotateX(-10deg) rotateY(20deg) rotateZ(10deg);
+  }
+  41.8% {
+    transform: rotateX(-10deg) rotateY(20deg) rotateZ(-10deg);
+  }
+  /* */
+
+  /* */
+  50% {
+    transform: rotateX(-10deg) rotateY(20deg) rotateZ(-10deg);
+  }
+  50.1% {
+    transform: rotateX(10deg) rotateY(20deg) rotateZ(-10deg);
+  }
+  58.5% {
+    transform: rotateX(-10deg) rotateY(20deg) rotateZ(-10deg);
+  }
+  /* */
+
+  /* */
+  66.7% {
+    transform: rotateX(-10deg) rotateY(20deg) rotateZ(-10deg);
+  }
+  66.8% {
+    transform: rotateX(10deg) rotateY(20deg) rotateZ(-10deg);
+  }
+  75.2% {
+    transform: rotateX(-10deg) rotateY(20deg) rotateZ(-10deg);
+  }
+  /* */
+
+  /* */
+  83.4% {
+    transform: rotateX(-10deg) rotateY(20deg) rotateZ(-10deg);
+  }
+  83.5% {
+    transform: rotateX(10deg) rotateY(20deg) rotateZ(-10deg);
+  }
+  91.9% {
+    transform: rotateX(-10deg) rotateY(20deg) rotateZ(-10deg);
+  }
+
+  /* */
+
+  100% {
+    transform: rotateX(-10deg) rotateY(20deg) rotateZ(-10deg);
+  }
+}
+
+.Box_Skeleton_Turn {
+  transform-style: preserve-3d;
+  animation: turn 12s linear infinite;
+}
+
+@keyframes turn {
+  0% {
+    transform: rotateX(-10deg) rotateY(20deg) translateX(0px) translateY(0px)
+      translateZ(0px);
+  }
+  25% {
+    transform: rotateX(80deg) rotateY(110deg) translateX(200px)
+      translateY(200px) translateZ(200px);
+  }
+  50% {
+    transform: rotateX(170deg) rotateY(200deg) translateX(0px) translateY(0px)
+      translateZ(0px);
+  }
+  75% {
+    transform: rotateX(260deg) rotateY(290deg) translateX(-200px)
+      translateY(-200px) translateZ(-200px);
+  }
+  100% {
+    transform: rotateX(350deg) rotateY(380deg) translateX(0px) translateY(0px)
+      translateZ(0px);
+  }
+}
+
+.Box.Right {
+  position: absolute;
+  animation: right 0.4s ease-in forwards;
+}
+@keyframes right {
+  from {
+    transform: rotateY(90deg) translateZ(3200px);
+  }
+  to {
+    transform: rotateY(90deg) translateZ(80px);
+  }
+}
+.Box.Left {
+  position: absolute;
+  animation: left 0.8s ease-in forwards;
+}
+@keyframes left {
+  from {
+    transform: rotateY(90deg) translateZ(-3200px);
+  }
+  to {
+    transform: rotateY(90deg) translateZ(-80px);
+  }
+}
+.Box.Front {
+  position: absolute;
+  animation: front 1.2s ease-in forwards;
+}
+@keyframes front {
+  from {
+    transform: translateZ(-3200px);
+  }
+  to {
+    transform: translateZ(-80px);
+  }
+}
+.Box.Back {
+  position: absolute;
+  animation: back 1.6s ease-in forwards;
+}
+@keyframes back {
+  from {
+    transform: translateZ(3200px);
+  }
+  to {
+    transform: translateZ(80px);
+  }
+}
+.Box.Up {
+  position: absolute;
+  animation: up 2s ease-in forwards;
+}
+@keyframes up {
+  from {
+    transform: rotateX(90deg) translateZ(3200px);
+  }
+  to {
+    transform: rotateX(90deg) translateZ(80px);
+  }
+}
+.Box.Down {
+  position: absolute;
+  animation: down 2.4s ease-in forwards;
+}
+@keyframes down {
+  from {
+    transform: rotateX(90deg) translateZ(-3200px);
+  }
+  to {
+    transform: rotateX(90deg) translateZ(-80px);
+  }
+}
+/* .Box.Right {
+  position: absolute;
+  transform: rotateY(90deg) translateZ(80px);
+}
+.Box.Right {
+  position: absolute;
+  transform: rotateY(90deg) translateZ(80px);
+}
+.Box.Right {
+  position: absolute;
+  transform: rotateY(90deg) translateZ(80px);
+} */
