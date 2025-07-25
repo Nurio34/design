@@ -28,6 +28,10 @@ export const css = [
     name: "Cube",
     href: "/cube",
   },
+  {
+    name: "Pokemon Cards",
+    href: "/pokemon-cards",
+  },
 ];
 
 export const svg = [
