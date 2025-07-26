@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Background from "./_components/Background";
 import Card from "./_components/Card";
 
@@ -12,7 +12,6 @@ const images = [
 ];
 
 function Client() {
-  const [isAnyCardActivated, setIsAnyCardActivated] = useState(false);
   const [activeCardIndex, setActiveCardIndex] = useState<number | undefined>(
     undefined
   );
@@ -20,7 +19,7 @@ function Client() {
   return (
     <section
       id="Section"
-      className="relative h-full flex justify-center items-center perspective-[1000px]"
+      className="relative h-full flex justify-center items-center perspective-distant bg-linear-60 from-primary/70 to-accent/70"
     >
       <Background />
       <div className="flex gap-10 justify-center flex-wrap max-w-[656px] transform-3d">
@@ -29,8 +28,6 @@ function Client() {
             key={index}
             image={image}
             index={index}
-            isAnyCardActivated={isAnyCardActivated}
-            setIsAnyCardActivated={setIsAnyCardActivated}
             activeCardIndex={activeCardIndex}
             setActiveCardIndex={setActiveCardIndex}
           />

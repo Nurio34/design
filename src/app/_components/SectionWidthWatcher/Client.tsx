@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { setSectionSize } from "@/store/slices/modal";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 function Client() {
   const { navMenu } = useAppSelector((s) => s.modals);
@@ -37,7 +37,7 @@ function Client() {
       if (handlerTimeout.current) clearTimeout(handlerTimeout.current);
       window.removeEventListener("resize", handleRowContainerWidth);
     };
-  }, [navMenu]);
+  }, [navMenu, dispatch]);
 
   return null;
 }

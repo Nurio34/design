@@ -1,0 +1,134 @@
+.AnimatingCubes.Cube.Cont {
+  transform: rotateY(30deg) translateZ(calc(1px * (200 - (var(--i) * 40))));
+  z-index: calc(100 - var(--i));
+  animation: AnimatingCubes_Cube_Cont_move 8s infinite;
+}
+
+.AnimatingCubes.Cube.Top {
+  background-color: rgb(244, 48, 152);
+  border: 0px solid orangered;
+  transform: rotateX(90deg) translateZ(20px);
+  animation: AnimatingCubes_Cube_Top_move 8s calc(0.08s * var(--i)) infinite;
+}
+.AnimatingCubes.Cube.Front {
+  background-color: rgb(0, 211, 187);
+  border: 0px solid orangered;
+  transform: translateZ(20px);
+  -webkit-box-reflect: below 0px
+    linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+  animation: AnimatingCubes_Cube_Front_move 8s calc(0.08s * var(--i)) infinite;
+}
+.AnimatingCubes.Cube.Side {
+  background-color: rgb(255, 183, 0);
+  border: 0px solid orangered;
+  transform: rotateY(90deg) translateZ(-20px);
+  -webkit-box-reflect: below 0px
+    linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+  animation: AnimatingCubes_Cube_Side_move 8s calc(0.08s * var(--i)) infinite;
+}
+
+@keyframes AnimatingCubes_Cube_Cont_move {
+  25% {
+    transform: rotateX(5deg) rotateY(30deg)
+      translateZ(calc(1px * (200 - (var(--i) * 40))));
+  }
+  75% {
+    transform: rotateX(-5deg) rotateY(30deg)
+      translateZ(calc(1px * (200 - (var(--i) * 40))));
+  }
+}
+
+@keyframes AnimatingCubes_Cube_Top_move {
+  12.5% {
+    transform: rotateX(90deg) translateZ(20px) scaleY(4);
+  }
+  25% {
+    transform: rotateX(90deg) translateZ(80px) scaleY(4);
+  }
+  37.5% {
+    transform: rotateX(90deg) translateZ(80px) scaleY(1);
+    background-color: rgb(244, 48, 152);
+  }
+  50% {
+    background-color: orangered;
+    border: 0.5px solid white;
+    transform: rotateX(90deg) translateZ(20px);
+  }
+  62.5% {
+    transform: rotateX(90deg) translateZ(80px) scaleY(1);
+  }
+  75% {
+    transform: rotateX(90deg) translateZ(80px) scaleY(4);
+  }
+  87.5% {
+    background-color: orangered;
+    border: 0.5px solid white;
+    transform: rotateX(90deg) translateZ(20px) scaleY(4);
+  }
+}
+
+@keyframes AnimatingCubes_Cube_Front_move {
+  12.5% {
+    transform: translateZ(80px);
+  }
+  25% {
+    transform-origin: bottom;
+    transform: translateZ(80px) scaleY(2.5);
+  }
+  37.5% {
+    transform-origin: bottom;
+    transform: translateZ(20px) scaleY(2.5);
+    background-color: rgb(0, 211, 187);
+  }
+  50% {
+    background-color: orangered;
+    border: 0.5px solid white;
+    transform: translateZ(20px);
+  }
+  62.5% {
+    transform-origin: bottom;
+    transform: translateZ(20px) scaleY(2.5);
+  }
+  75% {
+    transform-origin: bottom;
+    transform: translateZ(80px) scaleY(2.5);
+  }
+  87.5% {
+    background-color: orangered;
+    border: 0.5px solid white;
+    transform: translateZ(80px);
+  }
+}
+
+@keyframes AnimatingCubes_Cube_Side_move {
+  12.5% {
+    transform: rotateY(90deg) translateZ(-20px) scaleX(4);
+  }
+  25% {
+    transform-origin: bottom;
+    transform: rotateY(90deg) translateZ(-20px) scaleX(4) scaleY(2.5);
+  }
+  37.5% {
+    transform-origin: bottom;
+    transform: rotateY(90deg) translateZ(-20px) scaleX(1) scaleY(2.5);
+    background-color: rgb(255, 183, 0);
+  }
+  50% {
+    background-color: orangered;
+    border: 0.5px solid white;
+    transform: rotateY(90deg) translateZ(-20px);
+  }
+  62.5% {
+    transform-origin: bottom;
+    transform: rotateY(90deg) translateZ(-20px) scaleX(1) scaleY(2.5);
+  }
+  75% {
+    transform-origin: bottom;
+    transform: rotateY(90deg) translateZ(-20px) scaleX(4) scaleY(2.5);
+  }
+  87.5% {
+    background-color: orangered;
+    border: 0.5px solid white;
+    transform: rotateY(90deg) translateZ(-20px) scaleX(4);
+  }
+}

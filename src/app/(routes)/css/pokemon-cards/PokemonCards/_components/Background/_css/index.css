@@ -1,0 +1,46 @@
+.PokemonCards.Background {
+  background-image: linear-gradient(
+      0deg,
+      rgba(255, 0, 0, 0.5) 1%,
+      transparent 2%
+    ),
+    linear-gradient(90deg, rgba(255, 0, 0, 0.5) 1%, transparent 2%);
+  background-size: 5% 5%;
+
+  mask-image: url(/mask/3.webp);
+  mask-repeat: no-repeat;
+  mask-position: top;
+  mask-size: 100% 100%;
+
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    backdrop-filter: hue-rotate(0deg);
+    animation: PokemonCards_Background_before 4s infinite;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(0%);
+    backdrop-filter: hue-rotate(0deg);
+    animation: PokemonCards_Background_after 14s infinite;
+  }
+}
+
+@keyframes PokemonCards_Background_before {
+  to {
+    transform: translateX(0%);
+    backdrop-filter: hue-rotate(360deg);
+  }
+}
+@keyframes PokemonCards_Background_after {
+  to {
+    transform: translateX(100%);
+    backdrop-filter: hue-rotate(360deg);
+  }
+}

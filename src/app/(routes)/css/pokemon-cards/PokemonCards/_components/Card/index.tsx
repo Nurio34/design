@@ -1,26 +1,15 @@
 import "./_css/index.css";
-import {
-  Dispatch,
-  RefObject,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import { useAppSelector } from "@/store/hooks";
 
 function Card({
   image,
   index,
-  isAnyCardActivated,
-  setIsAnyCardActivated,
   activeCardIndex,
   setActiveCardIndex,
 }: {
   image: string;
   index: number;
-  isAnyCardActivated: boolean;
-  setIsAnyCardActivated: Dispatch<SetStateAction<boolean>>;
   activeCardIndex: number | undefined;
   setActiveCardIndex: Dispatch<SetStateAction<number | undefined>>;
 }) {
@@ -40,7 +29,15 @@ function Card({
   const active = isActive && activeCardIndex === index;
   const [deg, setDeg] = useState({ x: 0, y: 0 });
   const [isExploring, setIsExploring] = useState(false);
-  console.log(deg);
+  const [isTransitioned, setIsTransitioned] = useState(true);
+  const [lighterWidth, setLighterWidth] = useState<number | undefined>(
+    undefined
+  );
+  const [isLighterOpen, setIsLighterOpen] = useState(false);
+  const [cursorPosition, setCursorPosition] = useState<{
+    x: number | undefined;
+    y: number | undefined;
+  }>({ x: undefined, y: undefined });
 
   useEffect(() => {
     if (!CardRef.current) return;
@@ -55,11 +52,13 @@ function Card({
     const centerX = sectionWidth / 2 - width / 2;
     const centerY = sectionHeigt / 2 - height / 2;
     CenterRef.current = { x: centerX, y: centerY };
-  }, [sectionWidth]);
+
+    setLighterWidth((width * 4) / 6);
+  }, [sectionWidth, sectionHeigt]);
 
   useEffect(() => {
     if (activeCardIndex !== index) setIsActive(false);
-  }, [activeCardIndex]);
+  }, [activeCardIndex, index]);
 
   const handleClick = () => {
     const card = CardRef.current;
@@ -68,12 +67,14 @@ function Card({
 
     if (!card || !x || !y) return;
 
-    setIsAnyCardActivated(true);
     if (!isActive) {
       setIsActive(true);
+      setIsExploring(true);
       setActiveCardIndex(index);
+      setIsLighterOpen(true);
     } else {
       setIsActive(false);
+      setIsExploring(false);
       setActiveCardIndex(undefined);
     }
   };
@@ -81,7 +82,7 @@ function Card({
   return (
     <div
       ref={CardRef}
-      className="w-48 h-64 rounded-xl overflow-hidden transition-al"
+      className="w-48 h-64 rounded-xl cursor-pointer overflow-hidden"
       style={
         {
           backgroundImage: `url(${image})`,
@@ -92,16 +93,16 @@ function Card({
             active ? CenterRef.current!.x! - position.left! : 0
           }px) translateY(${
             active ? CenterRef.current!.y! - position.top! : 0
-          }px) translateZ(${active ? 0 : -48}px) scale(${
+          }px) translateZ(${active ? 145 : 0}px) scale(${
             active ? 2 : 1
-          }) rotateY(${deg.x}deg)`,
-          transitionDuration: isExploring ? 0 : "500ms",
+          }) rotateY(${isExploring ? deg.x : 0}deg) rotateX(${
+            isExploring ? deg.y : 0
+          }deg)`,
+          transitionDuration: isTransitioned ? "400ms" : "100ms",
         } as React.CSSProperties
       }
       onClick={handleClick}
-      onMouseEnter={() => setIsExploring(true)}
       onMouseLeave={() => {
-        setIsExploring(false);
         setDeg({ x: 0, y: 0 });
       }}
       onMouseMove={(e) => {
@@ -110,18 +111,38 @@ function Card({
 
         const x = e.clientX;
         const y = e.clientY;
+        setCursorPosition({ x, y });
 
-        const isAtTop = y >= top && y <= top + height / 2;
-        const isAtBottom = !isAtTop;
-        const isAtLeft = x >= left && x <= left + width / 2;
-        const isAtRight = !isAtLeft;
+        const xParam = width / 60;
+        const xDeg = +(-1 * ((x - left) / xParam - 30)).toFixed(0);
 
-        const xParam = width / 90;
-        let xDeg = +(-1 * ((x - left) / xParam - 45)).toFixed(0);
+        const yParam = height / 60;
+        const yDeg = +(-1 * ((y - top) / yParam - 30)).toFixed(0);
 
-        setDeg({ x: xDeg, y: 0 });
+        setDeg({ x: xDeg, y: yDeg });
+
+        if (isActive) setIsTransitioned(false);
       }}
-    />
+      onMouseDown={() => {
+        if (isActive) setIsTransitioned(true);
+      }}
+      onContextMenu={(e) => {
+        e.preventDefault();
+        if (isLighterOpen) setIsLighterOpen(false);
+        else setIsLighterOpen(true);
+      }}
+    >
+      {isActive && isLighterOpen && (
+        <div
+          className="absolute w-4/6 aspect-square rounded-full bg-white/10"
+          style={{
+            left: cursorPosition.x! - CenterRef.current.x! - lighterWidth! / 2,
+            top: cursorPosition.y! - CenterRef.current.y! - lighterWidth! / 2,
+            backdropFilter: "brightness(150%)",
+          }}
+        />
+      )}
+    </div>
   );
 }
 export default Card;

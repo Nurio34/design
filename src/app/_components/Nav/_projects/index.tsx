@@ -21,16 +21,16 @@ export const css = [
     href: "/columns-n-rows",
   },
   {
-    name: "Mask",
-    href: "/mask",
-  },
-  {
     name: "Cube",
     href: "/cube",
   },
   {
     name: "Pokemon Cards",
     href: "/pokemon-cards",
+  },
+  {
+    name: "Animating Cubes",
+    href: "/animating-cubes",
   },
 ];
 
