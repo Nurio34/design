@@ -32,6 +32,10 @@ export const css = [
     name: "Animating Cubes",
     href: "/animating-cubes",
   },
+  {
+    name: "Floor Cube Ball Scene",
+    href: "/floor-cube-ball-scene",
+  },
 ];
 
 export const svg = [

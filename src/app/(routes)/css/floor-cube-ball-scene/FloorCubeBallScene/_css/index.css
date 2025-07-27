@@ -1,0 +1,21 @@
+.FloorCubeBallScene {
+  perspective: 500px;
+  overflow: hidden;
+  perspective-origin: 50% 40%;
+
+  &.Scene {
+    background-color: black;
+    /* transform-style: preserve-3d; */
+    display: flex;
+    justify-content: center;
+  }
+
+  &.Floor {
+    width: 75%;
+    transform: rotateX(90deg);
+    background: linear-gradient(180deg, black, transparent),
+      repeating-conic-gradient(black 0deg 90deg, gray 90deg 180deg);
+
+    background-size: 100%, 5% 5%;
+  }
+}
