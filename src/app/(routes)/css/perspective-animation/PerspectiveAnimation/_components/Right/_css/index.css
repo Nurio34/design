@@ -1,0 +1,19 @@
+.PerspectiveAnimation .Right {
+  width: 190%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: rotateY(-90deg);
+  transform-origin: right;
+  background: linear-gradient(270deg, transparent, rgba(0, 0, 0, 0.9)),
+    conic-gradient(black 25%, white 0 50%, black 0 75%, white 0) 0 0 / calc(8em)
+      calc(8em);
+  animation: MoveRight 30s linear infinite;
+}
+
+@keyframes MoveRight {
+  to {
+    background-position: 100% 0%;
+  }
+}

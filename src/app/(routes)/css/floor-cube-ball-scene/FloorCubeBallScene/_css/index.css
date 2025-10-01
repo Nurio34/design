@@ -1,21 +1,103 @@
 .FloorCubeBallScene {
-  perspective: 500px;
-  overflow: hidden;
-  perspective-origin: 50% 40%;
+  .Scene {
+    perspective: 500px;
+    perspective-origin: 50% 40%;
 
-  &.Scene {
     background-color: black;
-    /* transform-style: preserve-3d; */
     display: flex;
     justify-content: center;
+
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
   }
 
-  &.Floor {
-    width: 75%;
+  .Floor {
+    width: 100%;
+    transform-origin: 50% 50%;
     transform: rotateX(90deg);
     background: linear-gradient(180deg, black, transparent),
       repeating-conic-gradient(black 0deg 90deg, gray 90deg 180deg);
-
     background-size: 100%, 5% 5%;
+  }
+  .Cube {
+    transform-style: preserve-3d;
+
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    transform-origin: bottom;
+    animation: FloorCubeBallScene_Cube_jump 2s infinite;
+
+    .CubePart {
+      width: 100%;
+      aspect-ratio: 1;
+      position: absolute;
+      background-color: rgba(95, 158, 160, 0.3);
+      box-shadow: inset 0 0 16px rgba(0, 0, 0, 0.7);
+    }
+    .Right {
+      transform: rotateY(90deg) translateZ(100px);
+    }
+    .Left {
+      transform: rotateY(90deg) translateZ(-100px);
+    }
+    .Back {
+      transform: translateZ(-100px);
+    }
+    .Front {
+      transform: translateZ(100px);
+    }
+    .Top {
+      transform: rotateX(90deg) translateZ(100px);
+
+      .ShadowLayer {
+        width: 100%;
+        aspect-ratio: 1;
+        background: radial-gradient(black 12.5%, transparent);
+        animation: FloorCubeBallScene_ShadowLayer_shadow 2s ease-in-out infinite;
+      }
+    }
+    .Bottom {
+      transform: rotateX(90deg) translateZ(-100px);
+    }
+  }
+
+  .Ball {
+    width: 100px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle at top, #504a4a, #000);
+    background-color: red;
+
+    animation: FloorCubeBallScene_Cube_Ball_jump 2s ease-out infinite;
+  }
+}
+@keyframes FloorCubeBallScene_Cube_Ball_jump {
+  50% {
+    transform: translate(-50%, -100%) translateY(-200px);
+    animation-timing-function: ease-in;
+  }
+}
+
+@keyframes FloorCubeBallScene_Cube_jump {
+  94% {
+    transform: translate(-50%, 0%);
+  }
+  95% {
+    transform: translate(-50%, 0%) scaleY(0.5);
+  }
+}
+
+@keyframes FloorCubeBallScene_ShadowLayer_shadow {
+  50% {
+    background: radial-gradient(black 0.5%, transparent);
   }
 }

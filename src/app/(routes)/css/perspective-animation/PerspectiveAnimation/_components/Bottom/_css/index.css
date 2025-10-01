@@ -1,0 +1,19 @@
+.PerspectiveAnimation .Bottom {
+  width: 100%;
+  height: 400%;
+  position: absolute;
+  bottom: 0;
+  transform: rotateX(90deg);
+  transform-origin: bottom;
+  background: linear-gradient(0deg, transparent, rgba(0, 0, 0, 0.9)),
+    conic-gradient(black 25%, white 0 50%, black 0 75%, white 0) 0 0 / calc(8em)
+      calc(8em);
+
+  animation: MoveBottom 30s linear infinite;
+}
+
+@keyframes MoveBottom {
+  to {
+    background-position: 0% 100%;
+  }
+}

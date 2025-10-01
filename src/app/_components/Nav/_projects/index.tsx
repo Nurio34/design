@@ -36,6 +36,14 @@ export const css = [
     name: "Floor Cube Ball Scene",
     href: "/floor-cube-ball-scene",
   },
+  {
+    name: "Perspective Animation",
+    href: "/perspective-animation",
+  },
+  {
+    name: "Award Winning Animation",
+    href: "/award-winning-animation",
+  },
 ];
 
 export const svg = [
