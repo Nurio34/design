@@ -1,8 +1,8 @@
 import AwardWinningAnimation from "./AwardWinningAnimation";
-import { getUnsplashPhotos } from "./AwardWinningAnimation/_actions/getUnsplashPhotos";
+import { get20UnsplashPhotos } from "@/app/_actions/unsplash/get20UnsplashPhotos";
 
 async function AwardWinningAnimationPage() {
-  const images = await getUnsplashPhotos();
+  const images = await get20UnsplashPhotos();
 
   return <AwardWinningAnimation images={images} />;
 }

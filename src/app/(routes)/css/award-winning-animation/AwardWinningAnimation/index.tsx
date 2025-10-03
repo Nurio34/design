@@ -1,11 +1,11 @@
 "use client";
 
+import { UnsplashPhoto } from "@/app/_types/unsplash/unsplashPhoto";
 import { store } from "@/store";
 import { Provider } from "react-redux";
 import Client from "./Client";
-import { UnsplashPhoto } from "./_types/unsplashPhoto";
 
-function AwardWinningAnimation({ images }: { images: UnsplashPhoto }) {
+function AwardWinningAnimation({ images }: { images: UnsplashPhoto[] }) {
   return (
     <Provider store={store}>
       <Client images={images} />
