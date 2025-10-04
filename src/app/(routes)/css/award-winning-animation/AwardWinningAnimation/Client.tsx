@@ -1,62 +1,58 @@
 import { UnsplashPhoto } from "@/app/_types/unsplash/unsplashPhoto";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import "./_css/index.css";
+import { useLoadingState } from "./_hooks/useLoadingState";
+import { useSplitIntoFive } from "./_hooks/useSplitIntoFive";
+import ProgressState from "./_components/Progress";
+import ImagesContainer from "./_components/ImagesContainer";
+import { useAwardWinningAnimationContext } from "./Context";
+import Gallery from "./_components/Gallery";
+
+export interface LoadingStateType {
+  progress: number;
+  isLoading: boolean;
+  images: ImageType[];
+}
+
+export interface ImageType {
+  src: string;
+  description: string | null | undefined;
+}
 
 function Client({ images }: { images: UnsplashPhoto[] }) {
-  const [imageList, setImageList] = useState<UnsplashPhoto[][]>([]);
+  const { setIsInitialAnimationEnded, isInitialAnimationEnded } =
+    useAwardWinningAnimationContext();
+
+  const [loadingState, setLoadingState] = useState<LoadingStateType>({
+    progress: 0,
+    isLoading: true,
+    images: [],
+  });
+  const [imageList, setImageList] = useState<ImageType[][]>([]);
+
+  useLoadingState(images, setLoadingState);
+  useSplitIntoFive(loadingState, setImageList);
 
   useEffect(() => {
-    function splitIntoFive(arr: UnsplashPhoto[]) {
-      const result = [];
-      const chunkSize = Math.ceil(arr.length / 5);
+    if (loadingState.isLoading) return;
 
-      for (let i = 0; i < arr.length; i += chunkSize) {
-        result.push(arr.slice(i, i + chunkSize));
-      }
-      setImageList(result);
-    }
+    const timeoutId = setTimeout(() => {
+      setIsInitialAnimationEnded(true);
+    }, 6000);
 
-    splitIntoFive(images);
-  }, []);
+    return () => clearTimeout(timeoutId);
+  }, [loadingState.isLoading, setIsInitialAnimationEnded]);
 
   return (
     <section
-      className="relative overflow-hidden h-full"
+      className="relative overflow-hidden h-full bg-black/90"
       id="AwardWinningAnimation"
     >
-      <ul
-        className="w-[110%] h-full flex gap-x-[5vw]
-        absolute top-0 left-1/2 -translate-x-1/2
-      "
-      >
-        {imageList.map((column, index) => {
-          return (
-            <li
-              key={index}
-              className="w-full bg-red-300 flex flex-col gap-y-[5vh]"
-              id={`AwardWinningAnimationColumn-${index}`}
-            >
-              {column.map((imageSrc, ind) => {
-                return (
-                  <figure
-                    key={imageSrc.blur_hash}
-                    className="relative w-full aspect-video"
-                    id={`AwardWinningAnimationImg-${ind}`}
-                  >
-                    <Image
-                      src={imageSrc.urls.regular}
-                      alt={imageSrc.alt_description || "image"}
-                      fill
-                      className="object-cover"
-                    />
-                  </figure>
-                );
-              })}
-            </li>
-          );
-        })}
-      </ul>
+      {!isInitialAnimationEnded && (
+        <ProgressState progress={loadingState.progress} />
+      )}
+      {!isInitialAnimationEnded && <ImagesContainer imageList={imageList} />}
+      <Gallery />
     </section>
   );
 }

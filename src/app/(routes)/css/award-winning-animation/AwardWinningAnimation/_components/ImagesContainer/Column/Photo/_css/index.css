@@ -1,0 +1,130 @@
+.AwardWinningAnimationPhoto_Center {
+  transform: translateY(calc(var(--containerHeight) * 1px));
+
+  &.Photo-0 {
+    animation: move_center 3s calc(0.5s * var(--delay))
+      cubic-bezier(0.95, 0.3, 0.15, 0.71) forwards;
+  }
+
+  &.Photo-1 {
+    animation: move_center 3s calc(0.5s * var(--delay))
+      cubic-bezier(0.95, 0.3, 0.15, 0.71) forwards;
+  }
+
+  &.Photo-2 {
+    animation: move_center 3s calc(0.5s * var(--delay))
+      cubic-bezier(0.95, 0.3, 0.15, 0.71) forwards;
+  }
+
+  &.Photo-3 {
+    animation: move_center 3s calc(0.5s * var(--delay))
+      cubic-bezier(0.95, 0.3, 0.15, 0.71) forwards;
+  }
+}
+@keyframes move_center {
+  to {
+    transform: translateY(0);
+  }
+}
+
+.AwardWinningAnimationColumn_Center {
+  animation: move_centerColumn 5.4s ease-in forwards;
+}
+
+@keyframes move_centerColumn {
+  to {
+    transform: translateY(calc(-1px * var(--containerHeight) / 7.57));
+  }
+}
+
+.AwardWinningAnimationPhoto_Side {
+  transform: translateY(calc(calc(var(--containerHeight)) * 1px));
+
+  &.Photo-0 {
+    animation: move_side 3s calc(0.5s * var(--delay))
+      cubic-bezier(0.95, 0.3, 0.15, 0.71) forwards;
+  }
+
+  &.Photo-1 {
+    animation: move_side 3s calc(0.5s * var(--delay))
+      cubic-bezier(0.95, 0.3, 0.15, 0.71) forwards;
+  }
+
+  &.Photo-2 {
+    animation: move_side 3s calc(0.5s * var(--delay))
+      cubic-bezier(0.95, 0.3, 0.15, 0.71) forwards;
+  }
+
+  &.Photo-3 {
+    animation: move_side 3s calc(0.5s * var(--delay))
+      cubic-bezier(0.95, 0.3, 0.15, 0.71) forwards;
+  }
+}
+
+@keyframes move_side {
+  to {
+    transform: translateY(0);
+  }
+}
+
+.AwardWinningAnimationColumn_Side {
+  animation: move_sideColumn 3s ease-in-out forwards;
+}
+
+@keyframes move_sideColumn {
+  to {
+    transform: translateY(0);
+  }
+}
+
+.AwardWinningAnimationPhoto_Middle {
+  transform: translateY(calc(calc(var(--containerHeight)) * -1px));
+
+  &.Photo-0 {
+    animation: move_middle 3s calc(0.5s * var(--delay))
+      cubic-bezier(0.95, 0.3, 0.15, 0.71) forwards;
+  }
+
+  &.Photo-1 {
+    animation: move_middle 3s calc(0.5s * var(--delay))
+      cubic-bezier(0.95, 0.3, 0.15, 0.71) forwards;
+  }
+
+  &.Photo-2 {
+    animation: move_middle 3s calc(0.5s * var(--delay))
+      cubic-bezier(0.95, 0.3, 0.15, 0.71) forwards;
+  }
+
+  &.Photo-3 {
+    animation: move_middle 3s calc(0.5s * var(--delay))
+      cubic-bezier(0.95, 0.3, 0.15, 0.71) forwards;
+  }
+}
+
+@keyframes move_middle {
+  to {
+    transform: translateY(0);
+  }
+}
+
+.AwardWinningAnimationColumn_Middle {
+  animation: move_middleColumn 3s ease-in-out forwards;
+}
+
+@keyframes move_middleColumn {
+  to {
+    transform: translateY(0);
+  }
+}
+
+.AwardWinningAnimationColumnContainer {
+  animation: scaleUp 3s 3s ease-in forwards;
+}
+
+@keyframes scaleUp {
+  to {
+    transform: scaleY(4.5) scaleX(5.5);
+    /* width: 550%;
+    height: 450%; */
+  }
+}

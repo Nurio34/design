@@ -22,7 +22,6 @@ export interface UnsplashPhoto {
   blur_hash: string;
   description?: string | null;
   alt_description?: string | null;
-  breadcrumbs: any[]; // if you know shape, replace `any[]`
   urls: {
     raw: string;
     full: string;
@@ -40,7 +39,6 @@ export interface UnsplashPhoto {
   likes: number;
   liked_by_user: boolean;
   bookmarked?: boolean; // Unsplash often excludes this if not applicable
-  current_user_collections: any[]; // could be refined
   sponsorship?: null | Record<string, unknown>;
   topic_submissions?: Record<string, unknown>;
   asset_type: "photo" | "illustration" | string;

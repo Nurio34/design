@@ -1,0 +1,10 @@
+.AwardWinningAnimation_Gallery_MainPhoto {
+  animation: fullTransform 2s 5.4s ease-in-out forwards;
+}
+
+@keyframes fullTransform {
+  to {
+    width: 100%;
+    height: 100%;
+  }
+}

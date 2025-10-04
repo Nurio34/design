@@ -1,0 +1,10 @@
+.AwardWinningAnimation_Gallery_Title {
+  animation: titleMove 1s ease-in forwards;
+}
+
+@keyframes titleMove {
+  to {
+    transform: translateY(-40px);
+    opacity: 1;
+  }
+}

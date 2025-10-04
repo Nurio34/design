@@ -5,9 +5,9 @@ import { UnsplashPhoto } from "@/app/_types/unsplash/unsplashPhoto";
 export const get20UnsplashPhotos = async (): Promise<UnsplashPhoto[]> => {
   const unsplashAccessKey = process.env.UNSPLASH_ACCESS_KEY;
 
-  const url = `https://api.unsplash.com/photos/?client_id=${unsplashAccessKey}&per_page=20`;
+  const url = `https://api.unsplash.com/search/photos/?client_id=${unsplashAccessKey}&query=nature&per_page=20&orientation=landscape`;
   const response = await fetch(url);
-  const images = await response.json();
+  const result = await response.json();
 
-  return images;
+  return result.results;
 };
