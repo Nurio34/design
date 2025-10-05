@@ -13,7 +13,7 @@ function BigPhoto({
     useAwardWinningAnimationContext();
 
   //! Eslint log
-  // console.log({ bigPhotoIndex });
+  console.log({ bigPhotoIndex });
 
   return (
     <figure

@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useAwardWinningAnimationContext } from "../../../../../Context";
 
 function ImagePlaceholder({ index }: { index: number }) {

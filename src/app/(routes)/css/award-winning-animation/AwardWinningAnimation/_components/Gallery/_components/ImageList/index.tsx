@@ -13,7 +13,7 @@ function ImageList({
   const { eightImage } = useAwardWinningAnimationContext();
 
   //! Eslint log
-  // console.log({ bigPhotoIndex, setBigPhotoIndex });
+  console.log({ bigPhotoIndex, setBigPhotoIndex });
 
   return (
     <ul className="absolute bottom-10 right-10 z-10 flex gap-x-2">

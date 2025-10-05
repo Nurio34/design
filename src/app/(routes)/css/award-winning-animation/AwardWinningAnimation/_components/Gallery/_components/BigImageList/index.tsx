@@ -13,7 +13,7 @@ function BigImageList({
 }) {
   const { moveX } = bigListMove;
 
-  const { eightImage, imagePlaceholderWidth, ImagePlaceholdersRef } =
+  const { eightImage, imagePlaceholderWidth } =
     useAwardWinningAnimationContext();
 
   const BigImageListRef = useRef<HTMLUListElement | null>(null);
