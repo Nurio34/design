@@ -1,34 +1,51 @@
-import Image from "next/image";
 import { useAwardWinningAnimationContext } from "../../Context";
 import "./_css/index.css";
 import Title from "./_components/Title";
+import { useState } from "react";
+import { ImageType } from "../../Client";
+import BigPhoto from "./_components/BigPhoto";
+import ImageList from "./_components/ImageList";
+import { useInitialBigPhoto } from "./_hooks/useInitialBigPhoto";
+import { useWheelMove } from "./_hooks/useWheelMove";
+import BigImageList from "./_components/BigImageList";
+
+export interface BigListMoveType {
+  isInBigListMode: boolean;
+  isMoving: boolean;
+  moveX: number;
+}
 
 function Gallery() {
-  const { isInitialAnimationEnded, mainPhoto } =
-    useAwardWinningAnimationContext();
+  const { isInitialAnimationEnded } = useAwardWinningAnimationContext();
+
+  const [bigPhoto, setBigPhoto] = useState<ImageType | undefined>(undefined);
+  const [bigPhotoIndex, setBigPhotoIndex] = useState(0);
+  const [bigListMove, setBigListMove] = useState<BigListMoveType>({
+    isInBigListMode: false,
+    isMoving: false,
+    moveX: 0,
+  });
+  const [bigImageListWidth, setBigImageListWidth] = useState(0);
+
+  useInitialBigPhoto(setBigPhoto);
+  useWheelMove(bigListMove, setBigListMove, bigImageListWidth);
 
   return (
     <section className="relative h-full">
-      <figure
-        className={`AwardWinningAnimation_Gallery_MainPhoto absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-                ${isInitialAnimationEnded ? "" : "opacity-0"}
-            `}
-        style={{
-          width: mainPhoto.width,
-          height: mainPhoto.height,
-        }}
-      >
-        {mainPhoto.image.src && (
-          <Image
-            src={mainPhoto.image.src}
-            alt={mainPhoto.image.description || "image"}
-            fill
-            priority
-            className="object-fill"
-          />
-        )}
-      </figure>
+      <BigPhoto bigPhoto={bigPhoto} bigPhotoIndex={bigPhotoIndex} />
       {isInitialAnimationEnded && <Title />}
+      {isInitialAnimationEnded && (
+        <ImageList
+          bigPhotoIndex={bigPhotoIndex}
+          setBigPhotoIndex={setBigPhotoIndex}
+        />
+      )}
+      {isInitialAnimationEnded && (
+        <BigImageList
+          bigListMove={bigListMove}
+          setBigImageListWidth={setBigImageListWidth}
+        />
+      )}
     </section>
   );
 }

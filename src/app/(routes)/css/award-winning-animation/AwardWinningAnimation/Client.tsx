@@ -1,5 +1,5 @@
 import { UnsplashPhoto } from "@/app/_types/unsplash/unsplashPhoto";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./_css/index.css";
 import { useLoadingState } from "./_hooks/useLoadingState";
 import { useSplitIntoFive } from "./_hooks/useSplitIntoFive";
@@ -7,6 +7,8 @@ import ProgressState from "./_components/Progress";
 import ImagesContainer from "./_components/ImagesContainer";
 import { useAwardWinningAnimationContext } from "./Context";
 import Gallery from "./_components/Gallery";
+import { useInitialAnimation } from "./_hooks/useInitialAnimation";
+import { useEightImage } from "./_hooks/useEightImage";
 
 export interface LoadingStateType {
   progress: number;
@@ -15,13 +17,12 @@ export interface LoadingStateType {
 }
 
 export interface ImageType {
-  src: string;
+  src: string | undefined;
   description: string | null | undefined;
 }
 
 function Client({ images }: { images: UnsplashPhoto[] }) {
-  const { setIsInitialAnimationEnded, isInitialAnimationEnded } =
-    useAwardWinningAnimationContext();
+  const { isInitialAnimationEnded } = useAwardWinningAnimationContext();
 
   const [loadingState, setLoadingState] = useState<LoadingStateType>({
     progress: 0,
@@ -32,16 +33,8 @@ function Client({ images }: { images: UnsplashPhoto[] }) {
 
   useLoadingState(images, setLoadingState);
   useSplitIntoFive(loadingState, setImageList);
-
-  useEffect(() => {
-    if (loadingState.isLoading) return;
-
-    const timeoutId = setTimeout(() => {
-      setIsInitialAnimationEnded(true);
-    }, 6000);
-
-    return () => clearTimeout(timeoutId);
-  }, [loadingState.isLoading, setIsInitialAnimationEnded]);
+  useInitialAnimation(loadingState.isLoading);
+  useEightImage(imageList);
 
   return (
     <section

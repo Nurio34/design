@@ -42,7 +42,7 @@ function Photo({
       }));
   }, [columnIndex, ind, image.src, image.description, setMainPhoto]);
 
-  if (!containerHeight) return;
+  if (!containerHeight || !image.src || !image.description) return;
 
   return (
     <figure

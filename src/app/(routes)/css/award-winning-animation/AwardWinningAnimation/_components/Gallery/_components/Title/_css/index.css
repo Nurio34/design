@@ -1,5 +1,5 @@
 .AwardWinningAnimation_Gallery_Title {
-  animation: titleMove 1s ease-in forwards;
+  animation: titleMove 0.6s cubic-bezier(0, 0, 0, 0.97) forwards;
 }
 
 @keyframes titleMove {

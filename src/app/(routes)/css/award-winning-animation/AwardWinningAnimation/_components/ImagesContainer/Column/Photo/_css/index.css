@@ -28,7 +28,7 @@
 }
 
 .AwardWinningAnimationColumn_Center {
-  animation: move_centerColumn 5.4s ease-in forwards;
+  animation: move_centerColumn 5.4s ease-in-out forwards;
 }
 
 @keyframes move_centerColumn {
@@ -118,7 +118,7 @@
 }
 
 .AwardWinningAnimationColumnContainer {
-  animation: scaleUp 3s 3s ease-in forwards;
+  animation: scaleUp 3s 3s ease-in-out forwards;
 }
 
 @keyframes scaleUp {
