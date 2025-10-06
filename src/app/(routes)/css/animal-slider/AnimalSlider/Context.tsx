@@ -6,13 +6,11 @@ import {
   ReactNode,
   SetStateAction,
   useContext,
-  useEffect,
   useState,
 } from "react";
 
 import { StaticImageData } from "next/image";
 import { useImages } from "./_hooks/useImages";
-import { useScreenSize } from "./_hooks/useScreenSize";
 import { useListImages } from "./_hooks/useListImages";
 
 export interface ImageType {

@@ -1,17 +1,17 @@
 import { Dispatch, SetStateAction, useEffect } from "react";
-import { ListImageType, ScreenSizeType } from "../../../Context";
+import { ListImageType, WrapperStateType } from "../../../Context";
 
 export const useRender = (
   listImages: ListImageType,
-  screenSize: ScreenSizeType,
+  wrapperState: WrapperStateType,
   setIsRendered: Dispatch<SetStateAction<boolean>>
 ) => {
   const { width, height, top, firsImageLeft } = listImages;
-  const { gapX } = screenSize;
+  const { gapX } = wrapperState;
 
   useEffect(() => {
     if (!width || !height || !top || !firsImageLeft || !gapX) return;
 
     setIsRendered(true);
-  }, [listImages, screenSize]);
+  }, [listImages, wrapperState]);
 };

@@ -51,5 +51,5 @@ export const useImages = (setImages: Dispatch<SetStateAction<ImageType[]>>) => {
         sm: wolf_sm_image,
       },
     ]);
-  }, []);
+  }, [setImages]);
 };

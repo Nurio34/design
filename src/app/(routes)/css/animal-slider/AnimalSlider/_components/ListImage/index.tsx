@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { ImageType, useAnimalSliderContext } from "../../Context";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRender } from "./_hooks/useRender";
 
 function ListImage({ images, index }: { images: ImageType[]; index: number }) {

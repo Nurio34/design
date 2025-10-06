@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { useAnimalSliderContext } from "./Context";
 import ImagePreview from "./_components/ImagePreview";
 import ListImage from "./_components/ListImage";
@@ -27,7 +26,7 @@ function Client() {
     window.addEventListener("resize", handleWrapperState);
 
     return () => window.removeEventListener("resize", handleWrapperState);
-  }, [images]);
+  }, [images, setWrapperState]);
 
   if (images.length === 0)
     return (

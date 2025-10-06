@@ -24,5 +24,5 @@ export const useListImages = (
       top,
       firsImageLeft,
     });
-  }, [wrapperState]);
+  }, [wrapperState, setListImages]);
 };
