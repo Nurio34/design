@@ -1,10 +1,10 @@
 .AwardWinningAnimation_Gallery_ImageList_Image {
-  animation: AwardWinningAnimation_Gallery_ImageList_Image_Move 0.4s
+  animation: AwardWinningAnimation_Gallery_ImageList_Image_Move 2s
     calc(0.05s * var(--index)) cubic-bezier(0, 0, 0, 0.97) forwards;
 }
 
 @keyframes AwardWinningAnimation_Gallery_ImageList_Image_Move {
   to {
-    transform: translateY(-100px);
+    transform: translateY(calc(1px * var(--translateY)));
   }
 }

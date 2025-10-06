@@ -1,7 +1,7 @@
 import { useAwardWinningAnimationContext } from "../../Context";
 import "./_css/index.css";
 import Title from "./_components/Title";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ImageType } from "../../Client";
 import BigPhoto from "./_components/BigPhoto";
 import ImageList from "./_components/ImageList";
@@ -30,15 +30,22 @@ function Gallery() {
   useInitialBigPhoto(setBigPhoto);
   useWheelMove(bigListMove, setBigListMove, bigImageListWidth);
 
+  //! Eslint
+  useEffect(() => {
+    setBigPhotoIndex(0);
+  }, []);
+  //!
+
   return (
     <section className="relative h-full">
-      <BigPhoto bigPhoto={bigPhoto} bigPhotoIndex={bigPhotoIndex} />
+      <BigPhoto
+        bigPhoto={bigPhoto}
+        bigPhotoIndex={bigPhotoIndex}
+        bigListMove={bigListMove}
+      />
       {isInitialAnimationEnded && <Title />}
       {isInitialAnimationEnded && (
-        <ImageList
-          bigPhotoIndex={bigPhotoIndex}
-          setBigPhotoIndex={setBigPhotoIndex}
-        />
+        <ImageList bigListMove={bigListMove} setBigListMove={setBigListMove} />
       )}
       {isInitialAnimationEnded && (
         <BigImageList

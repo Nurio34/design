@@ -13,10 +13,11 @@ export const useWheelMove = (
     isInitialAnimationEnded,
     imagePlaceholderWidth,
     ImagePlaceholdersRef,
+    isLastImageAnimationEnded,
   } = useAwardWinningAnimationContext();
 
   useEffect(() => {
-    if (!isInitialAnimationEnded) return;
+    if (!isInitialAnimationEnded || !isLastImageAnimationEnded) return;
 
     const handleScroll = (e: WheelEvent) => {
       const deltaY = e.deltaY;
@@ -50,6 +51,7 @@ export const useWheelMove = (
     moveX,
     setBigListMove,
     ImagePlaceholdersRef,
+    isLastImageAnimationEnded,
   ]);
 
   useEffect(() => {

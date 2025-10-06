@@ -44,6 +44,10 @@ export const css = [
     name: "Award Winning Animation",
     href: "/award-winning-animation",
   },
+  {
+    name: "Animal Slider",
+    href: "/animal-slider",
+  },
 ];
 
 export const svg = [

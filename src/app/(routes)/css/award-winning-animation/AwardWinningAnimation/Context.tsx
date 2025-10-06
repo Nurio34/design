@@ -12,10 +12,18 @@ import {
 } from "react";
 import { ImageType } from "./Client";
 
-interface MainPhotoType {
+export interface MainPhotoType {
   image: ImageType;
   width: number | undefined;
   height: number | undefined;
+}
+
+interface ImagePlaceholderPositionType {
+  index: number;
+  top: number;
+  left: number;
+  width: number;
+  height: number;
 }
 
 interface ContextType {
@@ -28,6 +36,16 @@ interface ContextType {
   imagePlaceholderWidth: number;
   setImagePlaceholderWidth: Dispatch<SetStateAction<number>>;
   ImagePlaceholdersRef: RefObject<HTMLLIElement[]>;
+  imagePlaceholdersPosition: ImagePlaceholderPositionType[];
+  setImagePlaceholdersPosition: Dispatch<
+    SetStateAction<ImagePlaceholderPositionType[]>
+  >;
+  smallImagesPosition: ImagePlaceholderPositionType[];
+  setSmallImagesPosition: Dispatch<
+    SetStateAction<ImagePlaceholderPositionType[]>
+  >;
+  isLastImageAnimationEnded: boolean;
+  setIsLastImageAnimationEnded: Dispatch<SetStateAction<boolean>>;
 }
 
 const Context = createContext<ContextType | undefined>(undefined);
@@ -49,11 +67,14 @@ export const AwardWinningAnimationProvider = ({
   const [eightImage, setEightImage] = useState<ImageType[]>([]);
   const [imagePlaceholderWidth, setImagePlaceholderWidth] = useState(0);
   const ImagePlaceholdersRef = useRef<HTMLLIElement[]>([]);
-
-  ImagePlaceholdersRef.current.forEach((placeholder) => {
-    const rect = placeholder.getBoundingClientRect();
-    console.log(rect);
-  });
+  const [imagePlaceholdersPosition, setImagePlaceholdersPosition] = useState<
+    ImagePlaceholderPositionType[]
+  >([]);
+  const [smallImagesPosition, setSmallImagesPosition] = useState<
+    ImagePlaceholderPositionType[]
+  >([]);
+  const [isLastImageAnimationEnded, setIsLastImageAnimationEnded] =
+    useState(false);
 
   return (
     <Context.Provider
@@ -67,6 +88,12 @@ export const AwardWinningAnimationProvider = ({
         imagePlaceholderWidth,
         setImagePlaceholderWidth,
         ImagePlaceholdersRef,
+        imagePlaceholdersPosition,
+        setImagePlaceholdersPosition,
+        smallImagesPosition,
+        setSmallImagesPosition,
+        isLastImageAnimationEnded,
+        setIsLastImageAnimationEnded,
       }}
     >
       {children}
