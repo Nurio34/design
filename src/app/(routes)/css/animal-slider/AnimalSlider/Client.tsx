@@ -1,5 +1,6 @@
 import { useAnimalSliderContext } from "./Context";
 import ImagePreview from "./_components/ImagePreview";
+import Info from "./_components/Info";
 import ListImage from "./_components/ListImage";
 import { useEffect, useRef } from "react";
 
@@ -42,7 +43,7 @@ function Client() {
   return (
     <section ref={WrapperRef} className="relative h-full">
       <ImagePreview />
-      <div></div>
+      <Info />
       <ul className="isolate">
         {images.map((image, index) => (
           <ListImage key={image.id} images={images} index={index} />

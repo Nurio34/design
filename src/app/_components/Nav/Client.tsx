@@ -3,6 +3,7 @@ import { useHandleNavItems } from "./_hooks/useHandleNavItems";
 import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { closeNavMenu } from "@/store/slices/modal";
+import { usePathname } from "next/navigation";
 
 function Client() {
   const { navItems, path } = useHandleNavItems();
@@ -12,13 +13,17 @@ function Client() {
 
   const collapseNav = () => dispatch(closeNavMenu());
 
+  const fullpath = usePathname();
+  const fullPathSplit = fullpath.split("/");
+  const projectName = fullPathSplit[fullPathSplit.length - 1];
+
   return (
     path && (
       <nav
         id="NavMenu"
         className={`border-r border-base-content/20 space-y-2 list-none
           col-start-1 col-end-2 row-start-2 row-end-3 transition-all
-          hidden md:block
+          hidden md:block z-10 bg-white
           ${
             navMenu
               ? "p-4 min-w-auto w-48 opacity-100"
@@ -36,7 +41,16 @@ function Client() {
           </button>
         </div>
         {navItems.map((navItem) => (
-          <li key={navItem.name} onClick={collapseNav}>
+          <li
+            key={navItem.name}
+            onClick={collapseNav}
+            className={`truncate ${
+              navItem.href.slice(1) === projectName
+                ? "font-extrabold text-base"
+                : "text-sm transition-all hover:font-bold"
+            }`}
+            title={navItem.name}
+          >
             <Link href={`/${path}/${navItem.href}`}>{navItem.name}</Link>{" "}
           </li>
         ))}

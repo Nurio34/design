@@ -1,0 +1,108 @@
+.AnimatedGlowingBorder {
+  .Container {
+    width: 600px;
+    height: 340px;
+    position: relative;
+    border-top-right-radius: 50vw;
+    border-bottom-right-radius: 50vw;
+    overflow: hidden;
+
+    .Background {
+      .Top {
+        .First {
+          background: linear-gradient(
+            to top,
+            transparent,
+            rgba(255, 0, 0, 0.4) 99%
+          );
+          background-size: 100% 20px;
+          background-repeat: no-repeat;
+        }
+        .Second {
+          background: linear-gradient(
+            to top,
+            transparent,
+            rgba(0, 0, 255, 0.4) 99%
+          );
+          background-size: 100% 20px;
+          background-repeat: no-repeat;
+        }
+        .Thirst {
+          background: linear-gradient(
+            to top,
+            transparent,
+            rgba(255, 255, 0, 0.4) 99%
+          );
+          background-size: 100% 20px;
+          background-repeat: no-repeat;
+        }
+      }
+
+      .Bottom {
+        .First {
+          background: linear-gradient(
+            to bottom,
+            transparent,
+            rgba(255, 165, 0, 0.4) 99%
+          );
+          background-size: 100% 20px;
+          background-repeat: no-repeat;
+          background-position-y: 100%;
+        }
+        .Second {
+          background: linear-gradient(
+            to bottom,
+            transparent,
+            rgba(128, 0, 128, 0.4) 99%
+          );
+          background-size: 100% 20px;
+          background-repeat: no-repeat;
+          background-position-y: 100%;
+        }
+        .Thirst {
+          background: linear-gradient(
+            to bottom,
+            transparent,
+            rgba(0, 128, 0, 0.4) 99%
+          );
+          background-size: 100% 20px;
+          background-repeat: no-repeat;
+          background-position-y: 100%;
+        }
+      }
+    }
+
+    /* &::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 50%;
+      background: linear-gradient(to right, red, blue, yellow);
+      border-top-right-radius: 50vw;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 50%;
+      bottom: 0;
+      background: linear-gradient(to right, orange, purple, green);
+      border-bottom-right-radius: 50vw;
+    } */
+
+    .Content {
+      height: 300px;
+      background-color: white;
+
+      position: absolute;
+      top: 20px;
+      right: 5px;
+
+      border-top-right-radius: 50vw;
+      border-bottom-right-radius: 50vw;
+      z-index: 3;
+
+      /* display: none; */
+    }
+  }
+}

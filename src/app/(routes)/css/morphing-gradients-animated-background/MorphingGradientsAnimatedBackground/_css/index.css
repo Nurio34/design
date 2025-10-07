@@ -1,0 +1,147 @@
+.MorphingGradientsAnimatedBackground {
+  --bg-1: rgb(108, 0, 162);
+  --bg-2: rgb(8, 17, 82);
+  --clr-0: 18, 113, 255;
+  --clr-1: 221, 74, 255;
+  --clr-2: 108, 220, 255;
+  --clr-3: 200, 50, 50;
+  --clr-4: 180, 188, 50;
+  --clr-interactive: 140, 100, 255;
+  --circleSize: 50%;
+  --blending: hard-light;
+
+  background: linear-gradient(40deg, var(--bg-1), var(--bg-2));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.MorphingGradientsAnimatedBackground .Text {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: transparent;
+  background-clip: text;
+  font-size: 200px;
+}
+
+.MorphingGradientsAnimatedBackground svg {
+  display: none;
+}
+
+.MorphingGradientsAnimatedBackground .Container {
+  filter: url(#goo) blur(10px);
+}
+
+.MorphingGradientsAnimatedBackground .Circle {
+  width: var(--circleSize);
+  aspect-ratio: 1;
+  border-radius: 100%;
+  position: absolute;
+  /* top: 50%;
+  left: 50%; */
+  mix-blend-mode: hard-light;
+  opacity: 1;
+}
+
+.MorphingGradientsAnimatedBackground #Circle-0 {
+  background: radial-gradient(
+      circle at center,
+      rgba(var(--clr-0), 0.8) 0,
+      rgba(var(--clr-0), 0) 50%
+    )
+    no-repeat;
+
+  transform-origin: center;
+  animation: MorphingGradientsAnimatedBackground_MoveVertical 30s ease infinite;
+}
+
+.MorphingGradientsAnimatedBackground #Circle-1 {
+  background: radial-gradient(
+      circle at center,
+      rgba(var(--clr-1), 0.8) 0,
+      rgba(var(--clr-1), 0) 50%
+    )
+    no-repeat;
+
+  transform-origin: left;
+  animation: MorphingGradientsAnimatedBackground_MoveInCircle 20s reverse
+    infinite;
+}
+
+.MorphingGradientsAnimatedBackground #Circle-2 {
+  background: radial-gradient(
+      circle at center,
+      rgba(var(--clr-2), 0.8) 0,
+      rgba(var(--clr-2), 0) 50%
+    )
+    no-repeat;
+
+  transform-origin: right;
+  animation: MorphingGradientsAnimatedBackground_MoveInCircle 20s linear
+    infinite;
+}
+
+.MorphingGradientsAnimatedBackground #Circle-3 {
+  background: radial-gradient(
+      circle at center,
+      rgba(var(--clr-3), 0.8) 0,
+      rgba(var(--clr-3), 0) 50%
+    )
+    no-repeat;
+  opacity: 0.7;
+
+  transform-origin: left;
+  animation: MorphingGradientsAnimatedBackground_MoveHorizantal 40s ease
+    infinite;
+}
+
+.MorphingGradientsAnimatedBackground #Circle-4 {
+  background: radial-gradient(
+      circle at center,
+      rgba(var(--clr-4), 0.8) 0,
+      rgba(var(--clr-4), 0) 50%
+    )
+    no-repeat;
+
+  transform-origin: left bottom;
+  animation: MorphingGradientsAnimatedBackground_MoveInCircle 20s ease infinite;
+}
+
+.MorphingGradientsAnimatedBackground #InteractiveCircle {
+  --circleSize: 100%;
+  background: radial-gradient(
+      circle at center,
+      rgba(var(--clr-interactive), 0.8) 0,
+      rgba(var(--clr-interactive), 0) 50%
+    )
+    no-repeat;
+}
+
+@keyframes MorphingGradientsAnimatedBackground_MoveInCircle {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes MorphingGradientsAnimatedBackground_MoveVertical {
+  0%,
+  100% {
+    transform: translateY(-50%);
+  }
+  50% {
+    transform: translateY(50%);
+  }
+}
+
+@keyframes MorphingGradientsAnimatedBackground_MoveHorizantal {
+  0%,
+  100% {
+    transform: translate(-50%, -10%);
+  }
+  50% {
+    transform: translate(50%, 10%);
+  }
+}

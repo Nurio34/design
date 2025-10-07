@@ -48,6 +48,14 @@ export const css = [
     name: "Animal Slider",
     href: "/animal-slider",
   },
+  {
+    name: "Morphing Gradients Animated Background",
+    href: "/morphing-gradients-animated-background",
+  },
+  {
+    name: "Animated Glowing Border",
+    href: "/animated-glowing-border",
+  },
 ];
 
 export const svg = [

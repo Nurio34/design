@@ -46,7 +46,7 @@ function ListImage({ images, index }: { images: ImageType[]; index: number }) {
             ${
               currentIndex - index === 1 || currentIndex - index === -4
                 ? "duration-[0s]"
-                : "duration-[400ms]"
+                : "duration-[1500ms]"
             }
         `}
       style={{

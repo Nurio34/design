@@ -13,5 +13,14 @@ export const useRender = (
     if (!width || !height || !top || !firsImageLeft || !gapX) return;
 
     setIsRendered(true);
-  }, [listImages, wrapperState]);
+  }, [
+    listImages,
+    wrapperState,
+    firsImageLeft,
+    gapX,
+    height,
+    setIsRendered,
+    top,
+    width,
+  ]);
 };

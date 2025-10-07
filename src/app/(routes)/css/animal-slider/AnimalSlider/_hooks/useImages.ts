@@ -30,7 +30,7 @@ export const useImages = (setImages: Dispatch<SetStateAction<ImageType[]>>) => {
         sm: lion_sm_image,
       },
       {
-        id: "wildDog",
+        id: "wild Dog",
         description:
           "The African wild dog, also known as the painted wolf, is one of Africa’s most efficient and cooperative hunters. Characterized by its mottled coat of black, yellow, and white patches, this endangered canine lives in tight-knit packs with strong social bonds. Each pack works together to care for the young and hunt prey with remarkable coordination and stamina.",
         rg: wildDog_image,
