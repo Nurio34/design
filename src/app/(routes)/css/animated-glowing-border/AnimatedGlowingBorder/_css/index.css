@@ -1,108 +1,125 @@
 .AnimatedGlowingBorder {
   .Container {
-    width: 600px;
-    height: 340px;
+    display: grid;
     position: relative;
-    border-top-right-radius: 50vw;
-    border-bottom-right-radius: 50vw;
-    overflow: hidden;
-
-    .Background {
-      .Top {
-        .First {
-          background: linear-gradient(
-            to top,
-            transparent,
-            rgba(255, 0, 0, 0.4) 99%
-          );
-          background-size: 100% 20px;
-          background-repeat: no-repeat;
-        }
-        .Second {
-          background: linear-gradient(
-            to top,
-            transparent,
-            rgba(0, 0, 255, 0.4) 99%
-          );
-          background-size: 100% 20px;
-          background-repeat: no-repeat;
-        }
-        .Thirst {
-          background: linear-gradient(
-            to top,
-            transparent,
-            rgba(255, 255, 0, 0.4) 99%
-          );
-          background-size: 100% 20px;
-          background-repeat: no-repeat;
-        }
-      }
-
-      .Bottom {
-        .First {
-          background: linear-gradient(
-            to bottom,
-            transparent,
-            rgba(255, 165, 0, 0.4) 99%
-          );
-          background-size: 100% 20px;
-          background-repeat: no-repeat;
-          background-position-y: 100%;
-        }
-        .Second {
-          background: linear-gradient(
-            to bottom,
-            transparent,
-            rgba(128, 0, 128, 0.4) 99%
-          );
-          background-size: 100% 20px;
-          background-repeat: no-repeat;
-          background-position-y: 100%;
-        }
-        .Thirst {
-          background: linear-gradient(
-            to bottom,
-            transparent,
-            rgba(0, 128, 0, 0.4) 99%
-          );
-          background-size: 100% 20px;
-          background-repeat: no-repeat;
-          background-position-y: 100%;
-        }
-      }
-    }
-
-    /* &::before {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 50%;
-      background: linear-gradient(to right, red, blue, yellow);
-      border-top-right-radius: 50vw;
-    }
-    &::after {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 50%;
-      bottom: 0;
-      background: linear-gradient(to right, orange, purple, green);
-      border-bottom-right-radius: 50vw;
-    } */
 
     .Content {
-      height: 300px;
-      background-color: white;
+      position: relative;
+      background: conic-gradient(
+        var(--degree),
+        red,
+        purple,
+        blue,
+        green,
+        yellow,
+        orange,
+        red
+      );
+      isolation: isolate;
 
-      position: absolute;
-      top: 20px;
-      right: 5px;
+      &::before {
+        content: "";
+        position: absolute;
+        inset: 1px;
+        background-color: white;
+        z-index: -3;
+      }
 
-      border-top-right-radius: 50vw;
-      border-bottom-right-radius: 50vw;
-      z-index: 3;
+      &.Left {
+        border-top-right-radius: 100vw;
+        border-bottom-right-radius: 100vw;
+        margin-left: -20px;
 
-      /* display: none; */
+        &::before {
+          border-top-right-radius: 100vw;
+          border-bottom-right-radius: 100vw;
+        }
+
+        .Inner {
+          border-top-right-radius: 100vw;
+          border-bottom-right-radius: 100vw;
+        }
+
+        .Outer {
+          border-top-right-radius: 100vw;
+          border-bottom-right-radius: 100vw;
+        }
+
+        .Outer_Backside {
+          border-top-right-radius: 100vw;
+          border-bottom-right-radius: 100vw;
+        }
+      }
+
+      &.Right {
+        justify-self: end;
+        border-top-left-radius: 100vw;
+        border-bottom-left-radius: 100vw;
+        margin-right: -20px;
+
+        &::before {
+          border-top-left-radius: 100vw;
+          border-bottom-left-radius: 100vw;
+        }
+
+        .Inner {
+          border-top-left-radius: 100vw;
+          border-bottom-left-radius: 100vw;
+        }
+
+        .Outer {
+          border-top-left-radius: 100vw;
+          border-bottom-left-radius: 100vw;
+        }
+
+        .Outer_Backside {
+          border-top-left-radius: 100vw;
+          border-bottom-left-radius: 100vw;
+        }
+      }
+
+      .Inner {
+        position: absolute;
+        inset: 10px;
+        background: conic-gradient(
+          red,
+          purple,
+          blue,
+          green,
+          yellow,
+          orange,
+          red
+        );
+        z-index: -4;
+        filter: blur(10px);
+      }
+
+      .Outer {
+        position: absolute;
+        z-index: -2;
+        inset: 7px;
+        background-color: white;
+      }
+      .Outer_Backside {
+        position: absolute;
+        z-index: -3;
+        inset: 19px;
+        background: conic-gradient(
+          red,
+          purple,
+          blue,
+          green,
+          yellow,
+          orange,
+          red
+        );
+        filter: blur(10px);
+      }
     }
+  }
+}
+
+@keyframes AnimatedGlowingBorder_Rotate {
+  to {
   }
 }

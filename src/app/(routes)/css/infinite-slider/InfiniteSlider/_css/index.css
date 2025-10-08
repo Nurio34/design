@@ -1,0 +1,44 @@
+.InfiniteSlider {
+  .Background {
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.9) 0%,
+        transparent 30%,
+        rgba(255, 255, 255, 0.3) 70%
+      ),
+      url("/css/infinite-slider/bg.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: grayscale(60%);
+  }
+
+  .Slider1_Item {
+    position: absolute;
+    animation: InfiniteSlider_Slider1_Move 20s
+      calc(2s * calc(var(--index) - var(--total))) linear infinite;
+  }
+
+  .Slider2_Item {
+    position: absolute;
+    animation: InfiniteSlider_Slider1_Move 18s calc(3s * calc(var(--index)))
+      linear infinite reverse;
+  }
+}
+
+@keyframes InfiniteSlider_Slider1_Move {
+  from {
+    left: 100%;
+  }
+  to {
+    left: calc(-1px * var(--width));
+  }
+}
+
+@keyframes InfiniteSlider_Slider2_Move {
+  from {
+    left: calc(-1px * var(--width));
+  }
+  to {
+    left: 100%;
+  }
+}

@@ -2,31 +2,57 @@ import "./_css/index.css";
 
 function Client() {
   return (
-    <section className="AnimatedGlowingBorder h-full">
-      <div className="Container">
-        <div className="Background h-full grid">
-          <div className="Top flex">
-            <div className="First h-full grow"></div>
-            <div className="Second h-full grow"></div>
-            <div className="Thirst h-full grow"></div>
-          </div>
-          <div className="Bottom flex">
-            <div className="First h-full grow"></div>
-            <div className="Second h-full grow"></div>
-            <div className="Thirst h-full grow"></div>
-          </div>
+    <section className="AnimatedGlowingBorder h-full grid grid-rows-4 gap-y-[5vh] py-[2vh]">
+      <div className="Container grid">
+        <div className="Content Left grid place-content-center gap-y-[2vh] text-center w-[40ch] py-[5vh] px-[2vw]">
+          <h1 className="font-bold text-2xl z-50">AI Powered</h1>
+          <p className="text-sm font-semibold z-50">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil
+            quaerat accusamus in, unde neque corporis ducimus doloribus
+            exercitationem saepe odio.
+          </p>
+          <div className="Inner" />
+          <div className="Outer" />
+          <div className="Outer_Backside" />
         </div>
-        <div className="Content w-full grid grid-cols-2 justify-center">
-          <div>s</div>
-          <div className="grid place-content-center gap-y-[2vh] text-center pr-[3vw]">
-            <h1 className="font-bold text-2xl">AI Powered</h1>
-            <p className="text-sm font-semibold">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi
-              impedit ab aliquam totam, esse quae quia provident dolorum
-              incidunt vero, enim voluptatum consequatur et distinctio at sed
-              possimus aperiam ipsam!
-            </p>
-          </div>
+      </div>
+      <div className="Container grid">
+        <div className="Content Right grid place-content-center gap-y-[2vh] text-center w-[40ch] py-[5vh] px-[2vw]">
+          <h1 className="font-bold text-2xl">AI Powered</h1>
+          <p className="text-sm font-semibold">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil
+            quaerat accusamus in, unde neque corporis ducimus doloribus
+            exercitationem saepe odio.
+          </p>
+          <div className="Inner" />
+          <div className="Outer" />
+          <div className="Outer_Backside" />
+        </div>
+      </div>
+      <div className="Container grid">
+        <div className="Content Left grid place-content-center gap-y-[2vh] text-center w-[40ch] py-[5vh] px-[2vw]">
+          <h1 className="font-bold text-2xl z-50">AI Powered</h1>
+          <p className="text-sm font-semibold z-50">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil
+            quaerat accusamus in, unde neque corporis ducimus doloribus
+            exercitationem saepe odio.
+          </p>
+          <div className="Inner" />
+          <div className="Outer" />
+          <div className="Outer_Backside" />
+        </div>
+      </div>
+      <div className="Container grid">
+        <div className="Content Right grid place-content-center gap-y-[2vh] text-center w-[40ch] py-[5vh] px-[2vw]">
+          <h1 className="font-bold text-2xl">AI Powered</h1>
+          <p className="text-sm font-semibold">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil
+            quaerat accusamus in, unde neque corporis ducimus doloribus
+            exercitationem saepe odio.
+          </p>
+          <div className="Inner" />
+          <div className="Outer" />
+          <div className="Outer_Backside" />
         </div>
       </div>
     </section>

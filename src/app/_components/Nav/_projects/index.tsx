@@ -56,6 +56,10 @@ export const css = [
     name: "Animated Glowing Border",
     href: "/animated-glowing-border",
   },
+  {
+    name: "Infinite Slider",
+    href: "/infinite-slider",
+  },
 ];
 
 export const svg = [
