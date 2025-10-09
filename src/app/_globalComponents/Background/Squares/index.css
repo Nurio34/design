@@ -1,0 +1,30 @@
+.Background_PinkPurple {
+  --size: 2;
+
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top, var(--clr1), var(--clr2)),
+    radial-gradient(circle at top, var(--clr2), var(--clr1));
+  background-size: calc(1rem * var(--size)) calc(1rem * var(--size));
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      120deg,
+      rgba(255, 255, 0, 0.6),
+      rgba(0, 0, 0, 0.2) 40%
+    );
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      240deg,
+      rgba(255, 165, 0, 0.6),
+      rgba(0, 0, 0, 0.2) 40%
+    );
+  }
+}

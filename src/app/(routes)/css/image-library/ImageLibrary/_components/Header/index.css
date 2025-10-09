@@ -1,0 +1,17 @@
+.Carets {
+  animation: ImageLibrary_Carets_Animate 1s linear infinite;
+}
+
+@keyframes ImageLibrary_Carets_Animate {
+  0% {
+    transform: rotateZ(90deg) translateX(-15px);
+    animation-timing-function: ease-in;
+  }
+  50% {
+    animation-timing-function: ease-out;
+    transform: rotateZ(90deg) translateX(-5px);
+  }
+  100% {
+    transform: rotateZ(90deg) translateX(-15px);
+  }
+}

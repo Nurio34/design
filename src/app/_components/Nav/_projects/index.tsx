@@ -60,6 +60,10 @@ export const css = [
     name: "Infinite Slider",
     href: "/infinite-slider",
   },
+  {
+    name: "Image Library",
+    href: "/image-library",
+  },
 ];
 
 export const svg = [

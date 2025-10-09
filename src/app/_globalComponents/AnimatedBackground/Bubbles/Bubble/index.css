@@ -1,0 +1,17 @@
+.AnimatedBackground_Bubbles {
+  .Bubble {
+    animation: AnimatedBackground_Bubbles_Animate
+      calc(1s * var(--animationDuration)) calc(1s * var(--animationDelay))
+      linear infinite;
+    transform-origin: calc(1px * var(--sequence));
+  }
+}
+
+@keyframes AnimatedBackground_Bubbles_Animate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -20,8 +20,8 @@
 
   .Slider2_Item {
     position: absolute;
-    animation: InfiniteSlider_Slider1_Move 18s calc(3s * calc(var(--index)))
-      linear infinite reverse;
+    animation: InfiniteSlider_Slider1_Move 18s
+      calc(3s * calc(var(--index) - var(--total))) linear infinite reverse;
   }
 }
 

@@ -13,7 +13,6 @@ function Client() {
   const [containerWidth, setContainerWidth] = useState(0);
   const [firstSliderItemWidth, setFirstSliderItemWidth] = useState(0);
   const [secondSliderHeight, setSecondSliderHeight] = useState(0);
-  console.log({ secondSliderHeight });
 
   useEffect(() => {
     const container = ContainerRef.current;
