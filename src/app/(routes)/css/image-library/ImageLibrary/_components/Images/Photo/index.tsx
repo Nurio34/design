@@ -1,44 +1,36 @@
 import { UnsplashPhoto } from "@/app/_types/unsplash/unsplashPhoto";
 import Image from "next/image";
-import { usePhoto } from "./_hooks/usePhoto";
 import { useImageState } from "./_hooks/useImageState";
-import { useCurrentState } from "./_hooks/useCurrentState";
 import { useImageLibraryContext } from "../../../Context";
+import { usePhotoContainer } from "./_hooks/usePhotoContainer";
+import { usePhoto } from "./_hooks/usePhoto";
 
 function Photo({ image, index }: { image: UnsplashPhoto; index: number }) {
-  const { containerState } = useImageLibraryContext();
+  const { currentIndex, photoContainerState } = useImageLibraryContext();
 
-  const {
-    urls,
-    description,
-    book_cover,
-    short_desc,
-    alt_description,
-    width,
-    height,
-  } = useImageState(image);
+  const isCurrent = currentIndex === index;
 
-  const { PhotorRef, photoState } = usePhoto();
+  const { urls, description, book_cover, short_desc, alt_description } =
+    useImageState(image);
 
-  const {
+  const { PhotoContainerRef } = usePhotoContainer(isCurrent);
+
+  const { PhotorRef, isImageLoaded, setIsImageLoaded, handleClick } = usePhoto(
     isCurrent,
-    isSelected,
-    isImageLoaded,
-    setIsImageLoaded,
-    handleClick,
-  } = useCurrentState(index, photoState);
-  console.log({ containerState, width, height });
+    index
+  );
 
   return (
     <li
-      className={`relative overflow-hidden transition-all duration-[400ms] ${
-        isCurrent ? "rounded-4xl" : "rounded-lg "
-      }`}
+      ref={PhotoContainerRef}
+      className={`overflow-hidden transition-all duration-[400ms]
+        grid
+        ${isCurrent ? "rounded-4xl" : "rounded-lg"} `}
       style={{ flexGrow: isCurrent ? 1 : 0.1 }}
       onClick={handleClick}
     >
       <div
-        className={`absolute inset-0 bg-red-500 transition-all duration-[400ms]
+        className={`row-start-1 col-start-1 transition-all duration-[400ms]
             ${isCurrent ? "opacity-100" : "opacity-0"}
         `}
         style={{
@@ -47,9 +39,14 @@ function Photo({ image, index }: { image: UnsplashPhoto; index: number }) {
       >
         <figure
           ref={PhotorRef}
-          className="transition-all w-full h-full"
+          className="fixed rounded-lg overflow-hidden transition-all duration-[400ms]"
           style={{
-            position: isSelected ? "fixed" : "absolute",
+            // top: isSelected ? 0 : currentPhotoState.top,
+            // left: isSelected ? 0 : currentPhotoState.left,
+            width: !isCurrent ? 0 : photoContainerState.width,
+            height: photoContainerState.height,
+            // width: photoContainerState.width,
+            // height: photoContainerState.height,
           }}
         >
           <Image
@@ -62,7 +59,10 @@ function Photo({ image, index }: { image: UnsplashPhoto; index: number }) {
             onLoad={() => setIsImageLoaded(true)}
           />
         </figure>
-        <div className="absolute bottom-0 px-4 pb-4 text-shadow-[0px_0px_15px_black]">
+        <div
+          className="absolute bottom-0 px-4 pb-4 text-shadow-[0px_0px_15px_black]"
+          style={{ width: photoContainerState.width }}
+        >
           <p
             className="font-bold text-xl capitalize text-white"
             style={{ fontVariant: "small-caps" }}
@@ -75,7 +75,7 @@ function Photo({ image, index }: { image: UnsplashPhoto; index: number }) {
         </div>
       </div>
       <div
-        className={`relative bg-black text-white capitalize font-semibold text-xl font-serif h-full transition-all 
+        className={`relative  row-start-1 col-start-1 bg-black text-white capitalize font-semibold text-xl font-serif h-full transition-all 
                 ${
                   isCurrent
                     ? "duration-[0s] opacity-0"
@@ -84,7 +84,7 @@ function Photo({ image, index }: { image: UnsplashPhoto; index: number }) {
             `}
         style={{ fontVariant: "small-caps" }}
       >
-        <p className="absolute left-1/2 bottom-0 origin-left -rotate-90 min-w-max">
+        <p className="absolute left-1/2 bottom-0 origin-left -rotate-90 min-w-max ">
           {book_cover} ...
         </p>
       </div>

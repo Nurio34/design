@@ -13,7 +13,8 @@ function Client() {
   const [animationState, setAnimationState] = useState({} as AnimationState);
   const { row, frames, timeParameter } = animationState;
   const [currentAction, setCurrentAction] = useState<CurrentAction>("stand");
-  console.log(currentAction);
+
+  useEffect(() => {}, [currentAction]);
 
   const timeout = useRef<NodeJS.Timeout>(null);
   const [walkingState, setWalkingState] = useState({

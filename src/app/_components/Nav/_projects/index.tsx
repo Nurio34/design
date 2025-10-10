@@ -64,6 +64,10 @@ export const css = [
     name: "Image Library",
     href: "/image-library",
   },
+  {
+    name: "Asymmetric Photo Gallery Page",
+    href: "/asymmetric-photo-gallery",
+  },
 ];
 
 export const svg = [

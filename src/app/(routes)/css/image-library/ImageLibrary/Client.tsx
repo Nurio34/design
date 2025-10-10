@@ -10,7 +10,10 @@ function Client() {
   const { ContainerRef } = useContainer();
 
   return (
-    <section ref={SectionRef} className="ImageLibrary relative h-full">
+    <section
+      ref={SectionRef}
+      className="ImageLibrary relative h-full overflow-hidden"
+    >
       <Squares clr1="rgba(255, 192, 203,0.3)" clr2="rgba(128,0,128,0.3)" />
       <Bubbles sectionSize={sectionSize} />
       <div

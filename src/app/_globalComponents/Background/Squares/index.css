@@ -1,7 +1,7 @@
 .Background_PinkPurple {
   --size: 2;
 
-  position: absolute;
+  position: fixed;
   inset: 0;
   background: radial-gradient(circle at top, var(--clr1), var(--clr2)),
     radial-gradient(circle at top, var(--clr2), var(--clr1));

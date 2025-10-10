@@ -1,35 +1,34 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
+import { useImageLibraryContext } from "../../../../Context";
 
-export interface PhotoStateType {
-  width: number;
-  height: number;
-  top: number;
-  left: number;
-}
+export const usePhoto = (isCurrent: boolean, index: number) => {
+  const { setCurrentIndex, setCurrentPhotoState } = useImageLibraryContext();
 
-export const usePhoto = () => {
   const PhotorRef = useRef<HTMLDivElement | null>(null);
-  const [photoState, setPhotoState] = useState<PhotoStateType>({
-    width: 0,
-    height: 0,
-    top: 0,
-    left: 0,
-  });
 
-  useEffect(() => {
-    const container = PhotorRef.current;
-    if (!container) return;
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const [isSelected, setIsSelected] = useState(false);
 
-    const handleContainer = () => {
-      const { width, height, top, left } = container.getBoundingClientRect();
-      setPhotoState({ width, height, top, left });
-    };
+  const handleClick = () => {
+    if (!isCurrent) setCurrentIndex(index);
+    else {
+      const photo = PhotorRef.current;
+      if (!photo) return;
 
-    handleContainer();
+      const { width, height, top, left } = photo.getBoundingClientRect();
+      setCurrentPhotoState({ width, height, top, left });
 
-    window.addEventListener("resize", handleContainer);
+      if (!isSelected) {
+        setIsSelected(true);
+      } else setIsSelected(false);
+    }
+  };
 
-    return () => window.removeEventListener("resize", handleContainer);
-  }, []);
-  return { PhotorRef, photoState };
+  return {
+    PhotorRef,
+    isImageLoaded,
+    setIsImageLoaded,
+    isSelected,
+    handleClick,
+  };
 };

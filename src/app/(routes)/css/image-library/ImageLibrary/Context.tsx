@@ -16,6 +16,10 @@ interface ContextType {
   setCurrentIndex: Dispatch<SetStateAction<number>>;
   containerState: ContainerType;
   setContainerState: Dispatch<SetStateAction<ContainerType>>;
+  photoContainerState: PhotoContainerStateType;
+  setPhotoContainerState: Dispatch<SetStateAction<PhotoContainerStateType>>;
+  currentPhotoState: ContainerType;
+  setCurrentPhotoState: Dispatch<SetStateAction<ContainerType>>;
 }
 
 export interface ContainerType {
@@ -23,6 +27,11 @@ export interface ContainerType {
   height: number;
   top: number;
   left: number;
+}
+
+export interface PhotoContainerStateType {
+  width: number;
+  height: number;
 }
 
 const Context = createContext<ContextType | undefined>(undefined);
@@ -42,6 +51,19 @@ export const ImageLibraryrovider = ({
     left: 0,
   });
 
+  const [photoContainerState, setPhotoContainerState] =
+    useState<PhotoContainerStateType>({
+      width: 0,
+      height: 0,
+    });
+
+  const [currentPhotoState, setCurrentPhotoState] = useState<ContainerType>({
+    width: 0,
+    height: 0,
+    top: 0,
+    left: 0,
+  });
+
   return (
     <Context.Provider
       value={{
@@ -50,6 +72,10 @@ export const ImageLibraryrovider = ({
         setCurrentIndex,
         containerState,
         setContainerState,
+        photoContainerState,
+        setPhotoContainerState,
+        currentPhotoState,
+        setCurrentPhotoState,
       }}
     >
       {children}

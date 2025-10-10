@@ -1,8 +1,12 @@
-import { getPhotosByCategory } from "@/app/_actions/unsplash/getPhotosByCategory";
+import { getPhotosByCategoryOrientationAmount } from "@/app/_actions/unsplash/getPhotosByCategoryOrientationAmount";
 import ImageLibrary from "./ImageLibrary";
 
 async function ImageLibraryPage() {
-  const images = await getPhotosByCategory("aerial", 10);
+  const images = await getPhotosByCategoryOrientationAmount(
+    "aerial",
+    "landscape",
+    10
+  );
 
   return <ImageLibrary images={images} />;
 }
