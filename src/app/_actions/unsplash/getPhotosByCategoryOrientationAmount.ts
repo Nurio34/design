@@ -8,7 +8,7 @@ export const getPhotosByCategoryOrientationAmount = async (
   landscape: Orientation,
   amount: number
 ): Promise<UnsplashPhoto[]> => {
-  const unsplashAccessKey = process.env.UNSPLASH_ACCESS_KEY;
+  const unsplashAccessKey = process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY;
 
   const url = `https://api.unsplash.com/search/photos/?client_id=${unsplashAccessKey}&query=${category}&per_page=${amount}&orientation=${landscape}`;
   const response = await fetch(url);
