@@ -16,7 +16,7 @@ export const getPhotosByCategoryAmount = async (
 
     return result.results;
   } catch (error) {
-    console.log({ msg: "Photos download error !", error });
+    console.error({ msg: "Photos download error !", error });
     return [];
   }
 };

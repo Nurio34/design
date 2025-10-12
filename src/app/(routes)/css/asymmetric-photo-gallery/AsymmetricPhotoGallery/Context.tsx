@@ -1,5 +1,6 @@
 "use client";
 
+import { categories, Category } from "@/app/_actions/unsplash/_type";
 import { usePreventScroll } from "@/app/_hooks/usePreventScroll";
 import { UnsplashPhoto } from "@/app/_types/unsplash/unsplashPhoto";
 import {
@@ -30,6 +31,10 @@ interface ContextType {
   setSelectedPhotoIndex: Dispatch<SetStateAction<number | undefined>>;
   screenSize: ScreenSize;
   setScreenSize: Dispatch<SetStateAction<ScreenSize>>;
+  isNewCategoryLoading: boolean;
+  setIsNewCategoryLoading: Dispatch<SetStateAction<boolean>>;
+  category: Category;
+  setCategory: Dispatch<SetStateAction<Category>>;
 }
 
 const Context = createContext<ContextType | undefined>(undefined);
@@ -57,6 +62,9 @@ export const AsymmetricPhotoGalleryProvider = ({
     height: 0,
   });
 
+  const [isNewCategoryLoading, setIsNewCategoryLoading] = useState(false);
+  const [category, setCategory] = useState<Category>(categories[0]);
+
   usePreventScroll(selectedPhotoIndex);
 
   return (
@@ -70,6 +78,10 @@ export const AsymmetricPhotoGalleryProvider = ({
         setSelectedPhotoIndex,
         screenSize,
         setScreenSize,
+        isNewCategoryLoading,
+        setIsNewCategoryLoading,
+        category,
+        setCategory,
       }}
     >
       {children}

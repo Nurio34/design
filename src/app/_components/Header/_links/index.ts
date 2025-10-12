@@ -24,4 +24,8 @@ export const links: LinkType[] = [
     name: "Three.js",
     href: "/three-js",
   },
+  {
+    name: "Game",
+    href: "/game",
+  },
 ];

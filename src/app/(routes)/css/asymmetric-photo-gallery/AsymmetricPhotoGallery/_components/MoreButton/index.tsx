@@ -3,14 +3,14 @@ import { useAsymmetricPhotoGalleryContext } from "../../Context";
 import { getPhotosByCategoryAmount } from "@/app/_actions/unsplash/getPhotosByCategoryAmount";
 
 function MoreButton() {
-  const { setImagesState } = useAsymmetricPhotoGalleryContext();
+  const { setImagesState, category } = useAsymmetricPhotoGalleryContext();
   const [page, setPage] = useState(2);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleClick = async () => {
     try {
       setIsLoading(true);
-      const images = await getPhotosByCategoryAmount("abstract", page, 30);
+      const images = await getPhotosByCategoryAmount(category, page, 30);
       setImagesState((prev) => [...prev, ...images]);
       setPage((prev) => prev + 1);
     } catch (error) {
@@ -23,7 +23,7 @@ function MoreButton() {
   return (
     <button
       type="button"
-      className={`btn btn-primary ${
+      className={`btn btn-primary mb-4 ${
         isLoading ? "opacity-70 cursor-default" : ""
       }`}
       onClick={() => !isLoading && handleClick()}

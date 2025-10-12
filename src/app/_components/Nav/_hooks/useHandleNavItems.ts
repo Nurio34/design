@@ -1,7 +1,15 @@
 "use client";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { canvas, css, gsap, NavItemType, svg, threejs } from "../_projects";
+import {
+  canvas,
+  css,
+  gsap,
+  NavItemType,
+  svg,
+  threejs,
+  game,
+} from "../_projects";
 
 export const useHandleNavItems = () => {
   const [navItems, setNavItems] = useState([] as NavItemType[]);
@@ -29,6 +37,9 @@ export const useHandleNavItems = () => {
         break;
       case "threejs":
         setNavItems(threejs);
+        break;
+      case "game":
+        setNavItems(game);
         break;
 
       default:

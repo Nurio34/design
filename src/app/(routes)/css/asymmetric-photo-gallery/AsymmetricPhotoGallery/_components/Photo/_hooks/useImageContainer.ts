@@ -9,7 +9,6 @@ export const useImageContainer = (columnCount: number | undefined) => {
     left: 0,
   });
   const [isSelected, setIsSelected] = useState(false);
-  console.log(isSelected);
 
   const handleClick = () => {
     setIsSelected((prev) => !prev);

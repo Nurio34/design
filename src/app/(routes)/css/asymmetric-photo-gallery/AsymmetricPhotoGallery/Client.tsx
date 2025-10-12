@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import { useAsymmetricPhotoGalleryContext } from "./Context";
 import MoreButton from "./_components/MoreButton";
 import { categories } from "@/app/_actions/unsplash/_type";
+import CategoryButton from "./_components/CategoryButton";
 
 function Client() {
   const { imagesState, setScreenSize } = useAsymmetricPhotoGalleryContext();
@@ -27,27 +28,23 @@ function Client() {
 
     return () => window.removeEventListener("resize", handleScreenSize);
   }, [setScreenSize]);
-  console.log(categories);
 
   return (
     <section
       ref={SectionRef}
       className="AsymmetricPhotoGallery h-full py-[5vh] px-[5vw] text-center"
+      style={{ maxWidth: "calc(100vw - 16px)" }}
     >
-      {/* {
-        <div
-          className="overflow-x-scroll flex-wrap"
-          style={{
-            maxWidth: "100vw",
-          }}
-        >
-          <ul className="flex gap-x-1">
-            {categories.map((category) => (
-              <li className="btn btn-sm btn-secondary">{category}</li>
-            ))}
-          </ul>
-        </div>
-      } */}
+      <div
+        className="max-w-full overflow-x-auto mb-4 pb-1 flex-wrap"
+        style={{ scrollbarWidth: "thin" }}
+      >
+        <ul className="flex  gap-x-1">
+          {categories.map((category) => (
+            <CategoryButton key={category} category={category} />
+          ))}
+        </ul>
+      </div>
       <ul className="Container h-full" style={gridStyle}>
         {imagesState.map((image, index) => (
           <Photo key={image.id} image={image} index={index} />

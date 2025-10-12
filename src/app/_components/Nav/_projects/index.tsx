@@ -161,3 +161,10 @@ export const threejs = [
     href: "/threejs-project-5",
   },
 ];
+
+export const game = [
+  {
+    name: "Snake",
+    href: "/snake",
+  },
+];
