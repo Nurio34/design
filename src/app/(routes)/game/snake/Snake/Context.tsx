@@ -33,7 +33,7 @@ interface ContextType {
 const Context = createContext<ContextType | undefined>(undefined);
 
 export const SnakeProvider = ({ children }: { children: ReactNode }) => {
-  const size = 3;
+  const size = 10;
   const [positions, setPositions] = useState<PositionType[]>([[1, 1]]);
   const [totalPart, setTotalPart] = useState(0);
   const [foodPosition, setFoodPosition] = useState<PositionType>([2, 1]);
@@ -58,14 +58,14 @@ export const SnakeProvider = ({ children }: { children: ReactNode }) => {
     const handleNewFoodPosition = () => {
       const randomX = 1 + Math.floor(Math.random() * (size - 1));
       const randomY = 1 + Math.floor(Math.random() * (size - 1));
-      const newFoodPosition = [randomX, randomY];
 
       const legitArray = positions.slice(0, totalPart + 1);
       if (
         JSON.stringify(legitArray).includes(JSON.stringify([randomX, randomY]))
-      )
+      ) {
         handleNewFoodPosition();
-      else setFoodPosition([randomX, randomY]);
+        return;
+      } else setFoodPosition([randomX, randomY]);
     };
 
     if (head[0] === food[0] && head[1] === food[1]) {

@@ -17,7 +17,7 @@ export const useGameLoop = (
   useEffect(() => {
     if (!isGameStarted) return;
 
-    if (IntervalRef.current) clearInterval(IntervalRef.current);
+    // if (IntervalRef.current) clearInterval(IntervalRef.current);
 
     IntervalRef.current = setInterval(() => {
       //** Handle "positions" state */
@@ -34,7 +34,7 @@ export const useGameLoop = (
         if (positions[0][0] === 1) return setIsGameStarted(false);
         setPositions((prev) => [[prev[0][0] - 1, prev[0][1]], ...prev]);
       }
-    }, 500);
+    }, 1000 / 6);
 
     return () => {
       if (IntervalRef.current) clearInterval(IntervalRef.current);

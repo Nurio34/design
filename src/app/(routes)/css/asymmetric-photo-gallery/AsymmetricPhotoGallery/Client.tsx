@@ -32,7 +32,7 @@ function Client() {
   return (
     <section
       ref={SectionRef}
-      className="AsymmetricPhotoGallery h-full py-[5vh] px-[5vw] text-center"
+      className="AsymmetricPhotoGallery h-full pt-[5vh] px-[5vw] text-center"
       style={{ maxWidth: "calc(100vw - 16px)" }}
     >
       <div

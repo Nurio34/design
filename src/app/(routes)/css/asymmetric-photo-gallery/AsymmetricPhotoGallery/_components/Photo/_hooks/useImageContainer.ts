@@ -8,11 +8,6 @@ export const useImageContainer = (columnCount: number | undefined) => {
     top: 0,
     left: 0,
   });
-  const [isSelected, setIsSelected] = useState(false);
-
-  const handleClick = () => {
-    setIsSelected((prev) => !prev);
-  };
 
   useEffect(() => {
     const handleImageContainerState = () => {
@@ -30,5 +25,5 @@ export const useImageContainer = (columnCount: number | undefined) => {
     return () => clearInterval(intId);
   }, [ImageContainerRef, columnCount]);
 
-  return { ImageContainerRef, imageContainerState, handleClick };
+  return { ImageContainerRef, imageContainerState };
 };
