@@ -1,4 +1,6 @@
+import ProviderComponent from "./Provider";
+
 function SvgPage() {
-  return <div>SvgPage</div>;
+  return <ProviderComponent />;
 }
 export default SvgPage;

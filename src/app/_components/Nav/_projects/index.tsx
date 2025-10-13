@@ -72,8 +72,8 @@ export const css = [
 
 export const svg = [
   {
-    name: "SVG Project 1",
-    href: "/svg-project-1",
+    name: "Fundamentals",
+    href: "/fundamentals",
   },
   {
     name: "SVG Project 2",
