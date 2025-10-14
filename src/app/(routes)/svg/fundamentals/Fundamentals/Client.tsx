@@ -1,11 +1,10 @@
+import { CSSProperties } from "react";
 import Svg from "./Svg";
+import "./index.css";
 
 function Client() {
-  const svgWidth = 100;
-  const svgHeight = 100;
-
   return (
-    <section className="min-h-full px-[5vw] py-[5vh]">
+    <section id="Fundamentals" className="min-h-full px-[5vw] py-[5vh]">
       <div className="flex flex-wrap items-center justify-center gap-x-[5vw] gap-y-[5vh]">
         <Svg width={100} height={100}>
           <circle cx={50} cy={50} r={50} fill="red" />
@@ -86,6 +85,47 @@ function Client() {
             strokeWidth={2}
             fill="none"
           />
+        </Svg>
+        <Svg width={100} height={100} viewBox="0 0 100 100">
+          <defs>
+            <linearGradient
+              id="grad"
+              x1={"0"}
+              x2={"100%"}
+              y1={"0%"}
+              y2={"100%"}
+            >
+              <stop offset={"0%"} stopColor="yellow" />
+              <stop offset={"50%"} stopColor="red" />
+            </linearGradient>
+          </defs>
+          <circle cx={50} cy={50} r={25} fill="orange" />
+          {/* <line
+            x1={50}
+            y1={20}
+            x2={50}
+            y2={4}
+            strokeWidth={6}
+            stroke="black"
+            strokeLinecap="round"
+            id="SunLine"
+          /> */}
+          <path
+            id="SunPath"
+            d="M50 18 L50 4"
+            stroke="orange"
+            strokeLinecap="round"
+            strokeWidth={6}
+          />
+          {Array(8)
+            .fill("#")
+            .map((_, ind) => (
+              <use
+                key={ind}
+                href="#SunPath"
+                style={{ "--index": ind } as CSSProperties}
+              />
+            ))}
         </Svg>
       </div>
     </section>

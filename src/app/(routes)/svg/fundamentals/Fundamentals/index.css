@@ -1,0 +1,6 @@
+#Fundamentals {
+  #SunPath {
+    transform-origin: center;
+    transform: rotateZ(calc(45deg * var(--index)));
+  }
+}
