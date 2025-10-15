@@ -127,6 +127,58 @@ function Client() {
               />
             ))}
         </Svg>
+        <Svg>
+          <text
+            x={50}
+            y={50}
+            fontSize={32}
+            fontWeight={"900"}
+            transform="rotate(30 50,50)"
+            rotate={30}
+          >
+            I Love SVG
+          </text>
+        </Svg>
+        <Svg height={300}>
+          <path
+            id="CosterPath"
+            d="M0,200 Q100,200 100,150 C100,100 25,100 25,150 Q25,250 150,250 Q200,250 225,200 Q250,150 300,150"
+            fill="none"
+            strokeWidth={1}
+          />
+          <text id="CosterText" fontSize={24}>
+            <textPath href="#CosterPath" startOffset={"0%"}>
+              Roller
+              <animate
+                attributeName="startOffset"
+                to="100%"
+                begin="0s"
+                dur="2s"
+                repeatCount="indefinite"
+              />
+            </textPath>
+            <textPath href="#CosterPath" startOffset={"0%"}>
+              Coster
+              <animate
+                attributeName="startOffset"
+                to="100%"
+                begin="0.4s"
+                dur="2s"
+                repeatCount="indefinite"
+              />
+            </textPath>
+            <textPath href="#CosterPath" startOffset={"0%"}>
+              Text
+              <animate
+                attributeName="startOffset"
+                to="100%"
+                begin="0.8s"
+                dur="2s"
+                repeatCount="indefinite"
+              />
+            </textPath>
+          </text>
+        </Svg>
       </div>
     </section>
   );
